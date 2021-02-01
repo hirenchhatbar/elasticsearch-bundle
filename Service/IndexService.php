@@ -22,11 +22,11 @@ use Elasticsearch\Client;
 class IndexService
 {
     /**
-     * Holds ES client.
+     * Holds object of ClientService.
      *
-     * @var Client
+     * @var ClientService
      */
-    protected Client $client;
+    protected ClientService $clientService;
 
     /**
      * Constructor.
@@ -35,7 +35,7 @@ class IndexService
      */
     public function __construct(ClientService $clientService)
     {
-        $this->client = $clientService->get();
+        $this->clientService = $clientService;
     }
 
     public function create()

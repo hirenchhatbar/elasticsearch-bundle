@@ -4,3 +4,9 @@ services:
 
     Phoenix\EasyElasticsearchBundle\Document\:
         resource: '../../Document/*'
+
+    Phoenix\EasyElasticsearchBundle\Service\:
+        resource: '../../Service/*'
+
+    Phoenix\EasyElasticsearchBundle\Service\ClientService:
+        arguments: ['%es.hosts%']

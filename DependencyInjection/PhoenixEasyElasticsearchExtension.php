@@ -45,5 +45,7 @@ class PhoenixEasyElasticsearchExtension extends Extension
         $loader->load('parameters.yaml');
 
         $loader->load('services.yaml');
+
+        $loader->load('services_commands.yaml');
     }
 }

@@ -11,14 +11,13 @@
 
 namespace Phoenix\EasyElasticsearchBundle\Command;
 
-use Symfony\Component\Console\Command\Command;
-
 /**
  * Class DocumentCommand
  * @package Phoenix\EasyElasticsearchBundle\Command
  * @author Hiren Chhatbar
  */
-class DocumentCommand extends Command
+class DocumentCommand extends AbstractCommand
 {
-
+    // the name of the command (the part after "bin/console")
+    protected static $defaultName = 'phoenix:elasticsearch:document';
 }

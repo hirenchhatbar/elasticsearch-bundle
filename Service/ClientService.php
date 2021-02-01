@@ -19,6 +19,7 @@ use Elasticsearch\Client;
  * @package Phoenix\EasyElasticsearchBundle\Service
  * @author Hiren Chhatbar
  * @link https://www.elastic.co/guide/en/elasticsearch/client/php-api/current/connceting.html
+ * @link https://symfony.com/doc/current/service_container/shared.html
  */
 class ClientService
 {
@@ -30,6 +31,13 @@ class ClientService
     protected array $hosts;
 
     /**
+     * Holds object of Client.
+     *
+     * @var Client
+     */
+    protected Client $client;
+
+    /**
      * Constructor.
      *
      * @param array $hosts
@@ -37,20 +45,30 @@ class ClientService
     public function __construct(array $hosts)
     {
         $this->hosts = $hosts;
+
+        if (!isset($this->client)) {
+            $this->set();
+        }
     }
 
     /**
-     * Returns client.
+     * Returns ES client.
      *
      * @return Client
      */
     public function get(): Client
     {
-        $client = ClientBuilder::create()
+        return $this->client;
+    }
+
+    /**
+     * Sets client.
+     */
+    public function set(): void
+    {
+        $this->client = ClientBuilder::create()
             ->setHosts($this->hosts)
             ->build()
         ;
-
-        return $client;
     }
 }

@@ -11,14 +11,13 @@
 
 namespace Phoenix\EasyElasticsearchBundle\Command;
 
-use Symfony\Component\Console\Command\Command;
-
 /**
  * Class IndexCommand
  * @package Phoenix\EasyElasticsearchBundle\Command
  * @author Hiren Chhatbar
  */
-class IndexCommand extends Command
+class IndexCommand extends AbstractCommand
 {
-
+    // the name of the command (the part after "bin/console")
+    protected static $defaultName = 'phoenix:elasticsearch:index';
 }

@@ -1,0 +1,12 @@
+services:
+    Phoenix\EasyElasticsearchBundle\Command\:
+        resource: '../../Command/*'
+
+    Phoenix\EasyElasticsearchBundle\Command\ClientCommand:
+        arguments: ['@Phoenix\EasyElasticsearchBundle\Service\ClientService']
+
+    # this config only applies to the services created by this file
+    _instanceof:
+        # services whose classes are instances of AbstractCommand will be tagged automatically
+        Phoenix\EasyElasticsearchBundle\Command\AbstractCommand:
+            tags: [console.command]
