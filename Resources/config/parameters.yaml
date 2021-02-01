@@ -3,3 +3,4 @@ parameters:
         [
             'http://localhost:9200',
         ]
+    index_prefix: 'pho_'

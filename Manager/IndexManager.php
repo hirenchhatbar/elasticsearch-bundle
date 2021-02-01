@@ -36,13 +36,21 @@ class IndexManager
     protected AbstractIndex $index;
 
     /**
+     * Holds the prefix appended before name of index.
+     *
+     * @var string
+     */
+    protected string $indexPrefix;
+
+    /**
      * Constructor.
      *
      * @param IndexService $indexService
      */
-    public function __construct(IndexService $indexService)
+    public function __construct(IndexService $indexService, string $indexPrefix)
     {
         $this->indexService = $indexService;
+        $this->indexPrefix = $indexPrefix;
     }
 
     /**
@@ -57,5 +65,17 @@ class IndexManager
         $this->index = $index;
 
         return $this;
+    }
+
+    /**
+     * Returns FQDN name of index.
+     *
+     * @param string $name
+     *
+     * @return string
+     */
+    protected function name(string $name): string
+    {
+        return sprintf('%s%s', $this->indexPrefix, $name);
     }
 }

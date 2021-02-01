@@ -1,0 +1,6 @@
+services:
+    Phoenix\EasyElasticsearchBundle\Index\:
+        resource: '../../Index/*'
+
+    Phoenix\EasyElasticsearchBundle\Document\:
+        resource: '../../Document/*'

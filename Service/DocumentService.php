@@ -18,6 +18,11 @@ namespace Phoenix\EasyElasticsearchBundle\Service;
  */
 class DocumentService
 {
+    public function __construct(ClientService $clientService)
+    {
+
+    }
+
     /**
      * @link https://www.elastic.co/guide/en/elasticsearch/client/php-api/current/indexing_documents.html
      */

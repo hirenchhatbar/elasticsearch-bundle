@@ -19,5 +19,8 @@ namespace Phoenix\EasyElasticsearchBundle\Service;
  */
 class SearchService
 {
+    public function __construct(ClientService $clientService)
+    {
 
+    }
 }

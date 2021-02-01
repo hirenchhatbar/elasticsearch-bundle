@@ -19,6 +19,13 @@ namespace Phoenix\EasyElasticsearchBundle\Index;
 abstract class AbstractIndex implements IndexInterface
 {
     /**
+     * Holds the name of index.
+     *
+     * @var string
+     */
+    public string $name;
+
+    /**
      * {@inheritDoc}
      *
      * @see \Phoenix\EasyElasticsearchBundle\Index\IndexInterface::mappingToUpdate()

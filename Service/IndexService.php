@@ -11,6 +11,8 @@
 
 namespace Phoenix\EasyElasticsearchBundle\Service;
 
+use Elasticsearch\Client;
+
 /**
  * Class IndexService
  * @package Phoenix\EasyElasticsearchBundle\Service
@@ -19,6 +21,23 @@ namespace Phoenix\EasyElasticsearchBundle\Service;
  */
 class IndexService
 {
+    /**
+     * Holds ES client.
+     *
+     * @var Client
+     */
+    protected Client $client;
+
+    /**
+     * Constructor.
+     *
+     * @param ClientService $clientService
+     */
+    public function __construct(ClientService $clientService)
+    {
+        $this->client = $clientService->get();
+    }
+
     public function create()
     {
 
