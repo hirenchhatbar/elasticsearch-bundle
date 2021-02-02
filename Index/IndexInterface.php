@@ -19,30 +19,30 @@ namespace Phoenix\EasyElasticsearchBundle\Index;
 interface IndexInterface
 {
     /**
-     * Returns mapping.
+     * Returns mappings.
      *
      * @return array
      */
-    public function mapping(): array;
+    public function mappings(): array;
 
     /**
-     * Returns mapping to be updated.
+     * Returns mappings to be updated.
      *
      * @return array
      */
-    public function mappingToUpdate(): array;
+    public function mappingsToUpdate(): array;
 
     /**
-     * Returns setting.
+     * Returns settings.
      *
      * @return array
      */
-    public function setting(): array;
+    public function settings(): array;
 
     /**
-     * Returns setting to be updated.
+     * Returns settings to be updated.
      *
      * @return array
      */
-    public function settingToUpdate(): array;
+    public function settingsToUpdate(): array;
 }

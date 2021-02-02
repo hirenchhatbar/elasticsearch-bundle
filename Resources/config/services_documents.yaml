@@ -1,0 +1,9 @@
+services:
+    Phoenix\EasyElasticsearchBundle\Document\:
+        resource: '../../Document/*'
+
+    # this config only applies to the services created by this file
+    _instanceof:
+        # services whose classes are instances of ListenerInterface will be tagged automatically
+        Phoenix\EasyElasticsearchBundle\Document\DocumentInterface:
+            tags: ['es.document']

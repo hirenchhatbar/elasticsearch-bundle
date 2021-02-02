@@ -11,8 +11,6 @@
 
 namespace Phoenix\EasyElasticsearchBundle\Service;
 
-use Elasticsearch\Client;
-
 /**
  * Class IndexService
  * @package Phoenix\EasyElasticsearchBundle\Service
@@ -38,38 +36,126 @@ class IndexService
         $this->clientService = $clientService;
     }
 
-    public function create()
+    /**
+     * Creates index.
+     *
+     * @param string $index
+     * @param array $settings
+     * @param array $mappings
+     *
+     * @return array
+     */
+    public function create(string $index, array $settings = [], array $mappings = []): array
     {
+        $params = [
+            'index' => $index,
+            'body' => [],
+        ];
 
+        if (\count($settings)) {
+            $params['body']['settings'] = $settings;
+        }
+
+        if (\count($mappings)) {
+            $params['body']['mappings'] = [
+                '_source' => [
+                    'enabled' => true
+                ],
+                'properties' => $mappings
+            ];
+        }
+
+        $this->clientService->get()->indices()->create($params);
     }
 
-    public function delete()
+    /**
+     * Deletes index.
+     *
+     * @param string $index
+     *
+     * @return array
+     */
+    public function delete(string $index): array
     {
-
+        return $this->clientService->get()->indices()->delete(['index' => $index]);
     }
 
-    public function exists()
+    /**
+     * Checks whether index exist or not.
+     *
+     * @param string $index
+     *
+     * @return bool
+     */
+    public function exists(string $index): bool
     {
-
+        return $this->clientService->get()->indices()->exists(['index' => $index]);
     }
 
-    public function mapping(): array
+    /**
+     * Returns settings of index given.
+     *
+     * @param string $index
+     *
+     * @return array
+     */
+    public function settings(string $index): array
     {
-
+        return $this->clientService->get()->indices()->getSettings(['index' => $index]);
     }
 
-    public function setting(): array
+    /**
+     * Returns mapping of index given.
+     *
+     * @param string $index
+     *
+     * @return array
+     */
+    public function mapping(string $index): array
     {
-
+        return $this->clientService->get()->indices()->getMapping(['index' => $index]);
     }
 
-    public function updateMapping()
+    /**
+     * Updates settings.
+     *
+     * @param string $index
+     * @param array $settings
+     *
+     * @return array
+     */
+    public function updateSettings(string $index, array $settings): array
     {
+        $params = [
+            'index' => $index,
+            'body' => [
+                'settings' => $settings,
+            ],
+        ];
 
+        return $this->clientService->get()->indices()->putSettings($params);
     }
 
-    public function updateSetting()
+    /**
+     * Updates mappings.
+     *
+     * @param string $index
+     * @param array $mappings
+     *
+     * @return array
+     */
+    public function updateMappings(string $index, array $mappings): array
     {
+        $params = [
+            'index' => $index,
+            'body' => [
+                '_source' => [
+                    'enabled' => true,
+                ],
+                'properties' => $mappings,
+            ],
+        ];
 
+        return $this->clientService->get()->indices()->putMapping($params);
     }
 }

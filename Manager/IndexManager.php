@@ -50,6 +50,7 @@ class IndexManager
     public function __construct(IndexService $indexService, string $indexPrefix)
     {
         $this->indexService = $indexService;
+
         $this->indexPrefix = $indexPrefix;
     }
 
@@ -65,6 +66,82 @@ class IndexManager
         $this->index = $index;
 
         return $this;
+    }
+
+    /**
+     * Creates index.
+     *
+     * @return array
+     */
+    public function create(): array
+    {
+        return $this->indexService->create(
+            $this->name($this->index->name),
+            $this->index->settings(),
+            $this->index->mappings()
+        );
+    }
+
+    /**
+     * Deletes index.
+     *
+     * @return array
+     */
+    public function delete(): array
+    {
+        return $this->indexService->delete($this->name($this->index->name));
+    }
+
+    /**
+     * Checks whether index exist or not.
+     *
+     * @param string $index
+     *
+     * @return bool
+     */
+    public function exists(): bool
+    {
+        return $this->indexService->exists($this->name($this->index->name));
+    }
+
+    /**
+     * Returns settings.
+     *
+     * @return array
+     */
+    public function settings(): array
+    {
+        return $this->indexService->settings($this->name($this->index->name));
+    }
+
+    /**
+     * Returns mapping.
+     *
+     * @return array
+     */
+    public function mapping(): array
+    {
+        return $this->indexService->mapping($this->name($this->index->name));
+    }
+
+    /**
+     * Updates settings.
+     *
+     * @return array
+     */
+    public function updateSettings(): array
+    {
+        return $this->indexService->updateSettings($this->name($this->index->name), $this->index->settingsToUpdate());
+    }
+
+    /**
+     * Updates mappings.
+     *
+     * @return array
+     */
+    public function updateMappings(): array
+    {
+        return $this->indexService->updateMappings($this->name($this->index->name), $this->index->mappingsToUpdate());
     }
 
     /**

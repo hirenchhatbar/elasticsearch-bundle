@@ -28,9 +28,9 @@ abstract class AbstractIndex implements IndexInterface
     /**
      * {@inheritDoc}
      *
-     * @see \Phoenix\EasyElasticsearchBundle\Index\IndexInterface::mappingToUpdate()
+     * @see \Phoenix\EasyElasticsearchBundle\Index\IndexInterface::mappingsToUpdate()
      */
-    public function mappingToUpdate(): array
+    public function mappingsToUpdate(): array
     {
         return [];
     }
@@ -38,9 +38,9 @@ abstract class AbstractIndex implements IndexInterface
     /**
      * {@inheritDoc}
      *
-     * @see \Phoenix\EasyElasticsearchBundle\Index\IndexInterface::settingToUpdate()
+     * @see \Phoenix\EasyElasticsearchBundle\Index\IndexInterface::settingsToUpdate()
      */
-    public function settingToUpdate(): array
+    public function settingsToUpdate(): array
     {
         return [];
     }
@@ -48,14 +48,14 @@ abstract class AbstractIndex implements IndexInterface
     /**
      * {@inheritDoc}
      *
-     * @see \Phoenix\EasyElasticsearchBundle\Index\IndexInterface::mapping()
+     * @see \Phoenix\EasyElasticsearchBundle\Index\IndexInterface::mappings()
      */
-    abstract public function mapping(): array;
+    abstract public function mappings(): array;
 
     /**
      * {@inheritDoc}
      *
-     * @see \Phoenix\EasyElasticsearchBundle\Index\IndexInterface::setting()
+     * @see \Phoenix\EasyElasticsearchBundle\Index\IndexInterface::settings()
      */
-    abstract public function setting(): array;
+    abstract public function settings(): array;
 }

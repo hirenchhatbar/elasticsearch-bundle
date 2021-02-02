@@ -1,0 +1,9 @@
+services:
+    Phoenix\EasyElasticsearchBundle\Index\:
+        resource: '../../Index/*'
+
+    # this config only applies to the services created by this file
+    _instanceof:
+        # services whose classes are instances of IndexInterface will be tagged automatically
+        Phoenix\EasyElasticsearchBundle\Index\IndexInterface:
+            tags: ['es.index']

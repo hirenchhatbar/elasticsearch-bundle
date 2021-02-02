@@ -1,0 +1,3 @@
+services:
+    Phoenix\EasyElasticsearchBundle\Manager\IndexManager:
+        arguments: ['@Phoenix\EasyElasticsearchBundle\Service\IndexService', '%es.index_prefix%']

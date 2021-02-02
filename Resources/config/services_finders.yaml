@@ -1,0 +1,3 @@
+services:
+    Phoenix\EasyElasticsearchBundle\Finder\IndexFinder:
+        arguments: [!tagged es.index]

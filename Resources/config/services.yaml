@@ -1,12 +1,9 @@
 services:
-    Phoenix\EasyElasticsearchBundle\Index\:
-        resource: '../../Index/*'
-
-    Phoenix\EasyElasticsearchBundle\Document\:
-        resource: '../../Document/*'
-
     Phoenix\EasyElasticsearchBundle\Service\:
         resource: '../../Service/*'
 
     Phoenix\EasyElasticsearchBundle\Service\ClientService:
         arguments: ['%es.hosts%']
+
+    Phoenix\EasyElasticsearchBundle\Service\IndexService:
+        arguments: ['@Phoenix\EasyElasticsearchBundle\Service\ClientService']
