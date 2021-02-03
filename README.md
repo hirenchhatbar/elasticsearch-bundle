@@ -7,4 +7,5 @@
 
 ## Roadmap
 
-- ClientService - make it factory
+- Index deletion - ask confirmation
+- Pretty array with settings and mappings display on console

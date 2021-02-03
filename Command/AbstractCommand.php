@@ -61,7 +61,7 @@ abstract class AbstractCommand extends Command
         $this->input  = $input;
         $this->output = $output;
 
-        $action = $input->getArgument('action');
+        $action = \str_replace('-', '', \lcfirst(\ucwords(\strtolower($input->getArgument('action')), '-')));
 
         if (method_exists($this, $action)) {
             $this->$action();

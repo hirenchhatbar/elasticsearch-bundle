@@ -71,6 +71,34 @@ class IndexCommand extends AbstractCommand
     }
 
     /**
+     * Creates index given.
+     */
+    public function create(): void
+    {
+        $name = $this->input->getOption('name');
+
+        if ($this->indexManager->init($this->indexFinder->find($name))->create()) {
+            $this->output->writeln('<fg=green;options=bold>Index successfully created.</>');
+        } else {
+            $this->output->writeln('<bg=red;fg=white;options=blink>Unable to create index, please try again.</>');
+        }
+    }
+
+    /**
+     * Deletes index given.
+     */
+    public function delete(): void
+    {
+        $name = $this->input->getOption('name');
+
+        if ($this->indexManager->init($this->indexFinder->find($name))->delete()) {
+            $this->output->writeln('<fg=green;options=bold>Index permanently deleted.</>');
+        } else {
+            $this->output->writeln('<bg=red;fg=white;options=blink>Unable to delete index, please try again.</>');
+        }
+    }
+
+    /**
      * Checks whether index exists or not.
      */
     public function exists(): void
@@ -81,6 +109,54 @@ class IndexCommand extends AbstractCommand
             $this->output->writeln('<fg=green;options=bold>Index exists.</>');
         } else {
             $this->output->writeln('<bg=red;fg=white;options=blink>Index not present.</>');
+        }
+    }
+
+    /**
+     * Dumps mappings of index given.
+     */
+    public function mappings(): void
+    {
+        $name = $this->input->getOption('name');
+
+        var_dump($this->indexManager->init($this->indexFinder->find($name))->mappings());
+    }
+
+    /**
+     * Dumps settings of index given.
+     */
+    public function settings(): void
+    {
+        $name = $this->input->getOption('name');
+
+        var_dump($this->indexManager->init($this->indexFinder->find($name))->settings());
+    }
+
+    /**
+     * Updates existing settings of index given.
+     */
+    public function updateSettings(): void
+    {
+        $name = $this->input->getOption('name');
+
+        if ($this->indexManager->init($this->indexFinder->find($name))->updateSettings()) {
+            $this->output->writeln('<fg=green;options=bold>Settings successfully updated.</>');
+        } else {
+            $this->output->writeln('<bg=red;fg=white;options=blink>Unable to update settings, please try again.</>');
+        }
+    }
+
+    /**
+     * Updates existing mappings of given index.
+     */
+    public function updateMappings(): void
+    {
+        $name = $this->input->getOption('name');
+
+        if ($this->indexManager->init($this->indexFinder->find($name))->updateMappings()) {
+            $this->output->writeln('<fg=green;options=bold>Mappings successfully updated.</>');
+        } else {
+            $this->output->writeln('<bg=red;fg=white;options=blink>Unable to update mappings, please try again.</>');
         }
     }
 }

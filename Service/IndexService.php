@@ -57,15 +57,10 @@ class IndexService
         }
 
         if (\count($mappings)) {
-            $params['body']['mappings'] = [
-                '_source' => [
-                    'enabled' => true
-                ],
-                'properties' => $mappings
-            ];
+            $params['body']['mappings'] = $mappings;
         }
 
-        $this->clientService->get()->indices()->create($params);
+        return $this->clientService->get()->indices()->create($params);
     }
 
     /**
@@ -111,7 +106,7 @@ class IndexService
      *
      * @return array
      */
-    public function mapping(string $index): array
+    public function mappings(string $index): array
     {
         return $this->clientService->get()->indices()->getMapping(['index' => $index]);
     }
@@ -148,12 +143,7 @@ class IndexService
     {
         $params = [
             'index' => $index,
-            'body' => [
-                '_source' => [
-                    'enabled' => true,
-                ],
-                'properties' => $mappings,
-            ],
+            'body' => $mappings,
         ];
 
         return $this->clientService->get()->indices()->putMapping($params);

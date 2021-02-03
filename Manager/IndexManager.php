@@ -119,9 +119,9 @@ class IndexManager
      *
      * @return array
      */
-    public function mapping(): array
+    public function mappings(): array
     {
-        return $this->indexService->mapping($this->name($this->index->name));
+        return $this->indexService->mappings($this->name($this->index->name));
     }
 
     /**
