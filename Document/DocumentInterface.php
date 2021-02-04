@@ -11,6 +11,8 @@
 
 namespace Phoenix\EasyElasticsearchBundle\Document;
 
+use Doctrine\ORM\QueryBuilder;
+
 /**
  * Class DocumentInterface
  * @package Phoenix\EasyElasticsearchBundle\Document
@@ -24,4 +26,11 @@ interface DocumentInterface
      * @return array
      */
     public function get(): array;
+
+    /**
+     * Returns QueryBuilder to be used while sync documents.
+     *
+     * @return QueryBuilder
+     */
+    public function queryBuilder(): QueryBuilder;
 }

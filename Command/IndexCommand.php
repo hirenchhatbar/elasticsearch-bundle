@@ -119,7 +119,7 @@ class IndexCommand extends AbstractCommand
     {
         $name = $this->input->getOption('name');
 
-        var_dump($this->indexManager->init($this->indexFinder->find($name))->mappings());
+        print_r($this->indexManager->init($this->indexFinder->find($name))->mappings());
     }
 
     /**
@@ -129,7 +129,7 @@ class IndexCommand extends AbstractCommand
     {
         $name = $this->input->getOption('name');
 
-        var_dump($this->indexManager->init($this->indexFinder->find($name))->settings());
+        print_r($this->indexManager->init($this->indexFinder->find($name))->settings());
     }
 
     /**

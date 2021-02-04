@@ -11,6 +11,8 @@
 
 namespace Phoenix\EasyElasticsearchBundle\Index;
 
+use Phoenix\EasyElasticsearchBundle\Document\AbstractDocument;
+
 /**
  * Class IndexInterface
  * @package Phoenix\EasyElasticsearchBundle\Index
@@ -45,4 +47,11 @@ interface IndexInterface
      * @return array
      */
     public function settingsToUpdate(): array;
+
+    /**
+     * Returns object of AbstractDocument.
+     *
+     * @return AbstractDocument
+     */
+    public function document(): AbstractDocument;
 }

@@ -8,6 +8,9 @@ services:
     Phoenix\EasyElasticsearchBundle\Command\IndexCommand:
         arguments: ['@Phoenix\EasyElasticsearchBundle\Manager\IndexManager', '@Phoenix\EasyElasticsearchBundle\Finder\IndexFinder']
 
+    Phoenix\EasyElasticsearchBundle\Command\DocumentCommand:
+        arguments: ['@Phoenix\EasyElasticsearchBundle\Utils\Util']
+
     # this config only applies to the services created by this file
     _instanceof:
         # services whose classes are instances of AbstractCommand will be tagged automatically
