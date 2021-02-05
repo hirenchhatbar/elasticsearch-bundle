@@ -2,6 +2,9 @@ services:
     Phoenix\EasyElasticsearchBundle\Index\:
         resource: '../../Index/*'
 
+    Phoenix\EasyElasticsearchBundle\Index\LocationIndex:
+        arguments: ['@Phoenix\EasyApiBundle\Document\LocationDocument']
+
     # this config only applies to the services created by this file
     _instanceof:
         # services whose classes are instances of IndexInterface will be tagged automatically

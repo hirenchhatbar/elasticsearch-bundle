@@ -9,7 +9,7 @@ services:
         arguments: ['@Phoenix\EasyElasticsearchBundle\Manager\IndexManager', '@Phoenix\EasyElasticsearchBundle\Finder\IndexFinder']
 
     Phoenix\EasyElasticsearchBundle\Command\DocumentCommand:
-        arguments: ['@Phoenix\EasyElasticsearchBundle\Utils\Util']
+        arguments: ['@Phoenix\EasyElasticsearchBundle\Utils\Util', '@Phoenix\EasyElasticsearchBundle\Manager\DocumentManager', '@Phoenix\EasyElasticsearchBundle\Finder\IndexFinder']
 
     # this config only applies to the services created by this file
     _instanceof:

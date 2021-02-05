@@ -15,6 +15,9 @@ use Doctrine\ORM\QueryBuilder;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Phoenix\EasyElasticsearchBundle\Finder\IndexFinder;
+use Phoenix\EasyElasticsearchBundle\Manager\DocumentManager;
+use Phoenix\EasyElasticsearchBundle\Utils\Util;
 
 /**
  * Class DocumentCommand
@@ -25,6 +28,35 @@ class DocumentCommand extends AbstractPageCommand
 {
     // the name of the command (the part after "bin/console")
     protected static $defaultName = 'phoenix:elasticsearch:document';
+
+    /**
+     * Holds object of DocumentManager.
+     *
+     * @var DocumentManager
+     */
+    protected DocumentManager $documentManager;
+
+    /**
+     * Holds object of IndexFinder.
+     *
+     * @var IndexFinder
+     */
+    protected IndexFinder $indexFinder;
+
+    /**
+     * Constructor.
+     *
+     * @param DocumentManager $documentManager
+     * @param IndexFinder $indexFinder
+     */
+    public function __construct(Util $util, DocumentManager $documentManager, IndexFinder $indexFinder)
+    {
+        $this->documentManager = $documentManager;
+
+        $this->indexFinder = $indexFinder;
+
+        parent::__construct($util);
+    }
 
     /**
      * {@inheritDoc}
@@ -40,6 +72,13 @@ class DocumentCommand extends AbstractPageCommand
             'na',
             InputOption::VALUE_REQUIRED,
             'Name of index'
+        );
+
+        $this->addOption(
+            'id',
+            'i',
+            InputOption::VALUE_OPTIONAL,
+            'Document ID which can be single or multiple comma separated'
         );
     }
 
@@ -78,6 +117,14 @@ class DocumentCommand extends AbstractPageCommand
     }
 
     /**
+     * Sync document by ID
+     */
+    public function syncById(): void
+    {
+
+    }
+
+    /**
      * Deletes all documents.
      */
     public function deleteAll(): void
@@ -89,6 +136,14 @@ class DocumentCommand extends AbstractPageCommand
      * Deletes documents by query
      */
     public function deleteByQuery(): void
+    {
+
+    }
+
+    /**
+     * Deletes document by ID
+     */
+    public function deleteById(): void
     {
 
     }

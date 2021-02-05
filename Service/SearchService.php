@@ -19,8 +19,20 @@ namespace Phoenix\EasyElasticsearchBundle\Service;
  */
 class SearchService
 {
+    /**
+     * Holds object of ClientService.
+     *
+     * @var ClientService
+     */
+    protected ClientService $clientService;
+
+    /**
+     * Constructor.
+     *
+     * @param ClientService $clientService
+     */
     public function __construct(ClientService $clientService)
     {
-
+        $this->clientService = $clientService;
     }
 }

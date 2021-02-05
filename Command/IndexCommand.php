@@ -46,11 +46,11 @@ class IndexCommand extends AbstractCommand
      */
     public function __construct(IndexManager $indexManager, IndexFinder $indexFinder)
     {
-        parent::__construct();
-
         $this->indexManager = $indexManager;
 
         $this->indexFinder = $indexFinder;
+
+        parent::__construct();
     }
 
     /**

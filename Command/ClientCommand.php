@@ -37,9 +37,9 @@ class ClientCommand extends AbstractCommand
      */
     public function __construct(ClientService $clientService)
     {
-        parent::__construct();
-
         $this->clientService = $clientService;
+
+        parent::__construct();
     }
 
     /**
