@@ -142,7 +142,7 @@ class DocumentCommand extends AbstractPageCommand
 
         $index = $this->indexFinder->find($indexName);
 
-        $this->documentService->index($index->name(), $id, $index->document()->get());
+        $this->documentService->index($index->name(), $id, $index->document()->get($id));
     }
 
     /**
@@ -169,5 +169,19 @@ class DocumentCommand extends AbstractPageCommand
         $index = $this->indexFinder->find($indexName);
 
         $this->documentService->delete($index->name(), $id);
+    }
+
+    /**
+     * Sync document by ID
+     */
+    public function get(): void
+    {
+        $indexName = $this->input->getOption('index');
+
+        $id = $this->input->getOption('id');
+
+        $index = $this->indexFinder->find($indexName);
+
+        print_r($this->documentService->get($index->name(), $id));
     }
 }

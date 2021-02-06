@@ -14,6 +14,8 @@
 
 ## Commands
 
+### Index related commands
+
 ```
 php bin/console phoenix:elasticsearch:index --name=location create
 ```
@@ -40,4 +42,26 @@ php bin/console phoenix:elasticsearch:index --name=location update-settings
 
 ```
 php bin/console phoenix:elasticsearch:index --name=location update-mappings
+```
+
+### Document related commands
+
+```
+php bin/console phoenix:elasticsearch:document --index=location --id=10 sync-by-id
+```
+
+```
+php bin/console phoenix:elasticsearch:document --index=location sync
+```
+
+```
+php bin/console phoenix:elasticsearch:document --index=location delete-all
+```
+
+```
+php bin/console phoenix:elasticsearch:document --index=location --id=10 delete-by-id
+```
+
+```
+php bin/console phoenix:elasticsearch:document --index=location --id=10 get
 ```

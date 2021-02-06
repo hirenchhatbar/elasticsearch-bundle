@@ -37,7 +37,7 @@ abstract class AbstractPageCommand extends AbstractCommand
      *
      * @var boolean
      */
-    protected bool $bulk = false;
+    protected bool $bulk = true;
 
     /**
      * Constructor.
@@ -106,7 +106,7 @@ abstract class AbstractPageCommand extends AbstractCommand
 
         $cntQb = clone $qb;
 
-        $cntQb->select('COUNT(*)');
+        $cntQb->select('COUNT(l.id)');
 
         $cntQb->resetDQLPart('orderBy');
         $cntQb->resetDQLPart('distinct');
@@ -187,7 +187,11 @@ abstract class AbstractPageCommand extends AbstractCommand
 
             $options = \array_merge($this->input->getOptions(), ['page' => $page]);
 
-            $this->util->cliCommand($this->getDefaultName(), array_filter($options));
+            $arguments = $this->input->getArguments();
+
+            unset($arguments['command']);
+
+            $this->util->cliCommand($this->getDefaultName(), array_filter($options), $arguments);
         }
     }
 

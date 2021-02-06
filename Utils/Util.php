@@ -18,6 +18,23 @@ namespace Phoenix\EasyElasticsearchBundle\Utils;
 class Util
 {
     /**
+     * Holds path of project directory.
+     *
+     * @var string
+     */
+    protected string $projectDir;
+
+    /**
+     * Constructor.
+     *
+     * @param string $projectDir
+     */
+    public function __construct(string $projectDir)
+    {
+        $this->projectDir = $projectDir;
+    }
+
+    /**
      * Returns PHP path.
      *
      * @return string
@@ -42,13 +59,14 @@ class Util
      *
      * @param string $command
      * @param array $options
+     * @param array $arguments
      * @param bool $background
      *
-     * @return int|NULL
+     * @return mixed
      */
-    public function cliCommand(string $command, array $options, bool $background = false)
+    public function cliCommand(string $command, array $options, array $arguments = [], bool $background = false)
     {
-        $cmdStr = $this->cliCommandString($command, $options);
+        $cmdStr = $this->cliCommandString($command, $options, $arguments);
 
         if ($background) {
             exec(sprintf('nohup %s > /dev/null 2>/dev/null &', $cmdStr));
@@ -64,10 +82,11 @@ class Util
      *
      * @param string $command
      * @param array $options
+     * @param array $arguments
      *
      * @return string
      */
-    public function cliCommandString(string $command, array $options): string
+    public function cliCommandString(string $command, array $options, array $arguments = []): string
     {
         $optStr = [];
 
@@ -76,11 +95,12 @@ class Util
         }
 
         $cmdStr = trim(sprintf(
-            '%s %s %s %s',
+            '%s %s %s %s %s',
             $this->phpPath(),
             $this->consolePath(),
             $command,
-            implode(' ', $optStr)
+            implode(' ', $optStr),
+            implode(' ', $arguments)
         ));
 
         return $cmdStr;

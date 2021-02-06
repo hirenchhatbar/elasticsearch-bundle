@@ -8,5 +8,9 @@ services:
     Phoenix\EasyElasticsearchBundle\Service\IndexService:
         arguments: ['@Phoenix\EasyElasticsearchBundle\Service\ClientService']
 
+    Phoenix\EasyElasticsearchBundle\Service\DocumentService:
+        arguments: ['@Phoenix\EasyElasticsearchBundle\Service\ClientService']
+
     Phoenix\EasyElasticsearchBundle\Utils\Util:
         class: Phoenix\EasyElasticsearchBundle\Utils\Util
+        arguments: ['%kernel.project_dir%']
