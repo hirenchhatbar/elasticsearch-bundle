@@ -76,7 +76,7 @@ class IndexManager
     public function create(): array
     {
         return $this->indexService->create(
-            $this->name($this->index->name),
+            $this->name(),
             $this->index->settings(),
             $this->index->mappings()
         );
@@ -89,7 +89,7 @@ class IndexManager
      */
     public function delete(): array
     {
-        return $this->indexService->delete($this->name($this->index->name));
+        return $this->indexService->delete($this->name());
     }
 
     /**
@@ -101,7 +101,7 @@ class IndexManager
      */
     public function exists(): bool
     {
-        return $this->indexService->exists($this->name($this->index->name));
+        return $this->indexService->exists($this->name());
     }
 
     /**
@@ -111,7 +111,7 @@ class IndexManager
      */
     public function settings(): array
     {
-        return $this->indexService->settings($this->name($this->index->name));
+        return $this->indexService->settings($this->name());
     }
 
     /**
@@ -121,7 +121,7 @@ class IndexManager
      */
     public function mappings(): array
     {
-        return $this->indexService->mappings($this->name($this->index->name));
+        return $this->indexService->mappings($this->name());
     }
 
     /**
@@ -131,7 +131,7 @@ class IndexManager
      */
     public function updateSettings(): array
     {
-        return $this->indexService->updateSettings($this->name($this->index->name), $this->index->settingsToUpdate());
+        return $this->indexService->updateSettings($this->name(), $this->index->settingsToUpdate());
     }
 
     /**
@@ -141,7 +141,7 @@ class IndexManager
      */
     public function updateMappings(): array
     {
-        return $this->indexService->updateMappings($this->name($this->index->name), $this->index->mappingsToUpdate());
+        return $this->indexService->updateMappings($this->name(), $this->index->mappingsToUpdate());
     }
 
     /**
@@ -151,8 +151,8 @@ class IndexManager
      *
      * @return string
      */
-    protected function name(string $name): string
+    public function name(): string
     {
-        return sprintf('%s%s', $this->indexPrefix, $name);
+        return sprintf('%s%s', $this->indexPrefix, $this->index->name);
     }
 }

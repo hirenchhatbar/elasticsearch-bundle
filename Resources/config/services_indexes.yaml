@@ -1,9 +1,8 @@
 services:
     Phoenix\EasyElasticsearchBundle\Index\:
         resource: '../../Index/*'
-
-    Phoenix\EasyElasticsearchBundle\Index\LocationIndex:
-        arguments: ['@Phoenix\EasyApiBundle\Document\LocationDocument']
+        calls:
+            - [setPrefix, ['%es.index_prefix%']]
 
     # this config only applies to the services created by this file
     _instanceof:

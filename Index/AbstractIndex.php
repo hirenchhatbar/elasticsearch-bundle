@@ -28,6 +28,13 @@ abstract class AbstractIndex implements IndexInterface
     public string $name;
 
     /**
+     * Prefix of name.
+     *
+     * @var string
+     */
+    protected string $prefix = '';
+
+    /**
      * Holds object of AbstractDocument.
      *
      * @var AbstractDocument
@@ -154,5 +161,27 @@ abstract class AbstractIndex implements IndexInterface
     final public function document(): AbstractDocument
     {
         return $this->document;
+    }
+
+    /**
+     * Sets prefix.
+     *
+     * @param string $value
+     */
+    final public function setPrefix(string $value): void
+    {
+        $this->prefix = $value;
+    }
+
+    /**
+     * Returns FQDN name of index.
+     *
+     * @param string $name
+     *
+     * @return string
+     */
+    final public function name(): string
+    {
+        return sprintf('%s%s', $this->prefix, $this->name);
     }
 }

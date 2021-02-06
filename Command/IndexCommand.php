@@ -11,7 +11,7 @@
 
 namespace Phoenix\EasyElasticsearchBundle\Command;
 
-use Phoenix\EasyElasticsearchBundle\Manager\IndexManager;
+use Phoenix\EasyElasticsearchBundle\Service\IndexService;
 use Phoenix\EasyElasticsearchBundle\Finder\IndexFinder;
 use Symfony\Component\Console\Input\InputOption;
 
@@ -26,11 +26,11 @@ class IndexCommand extends AbstractCommand
     protected static $defaultName = 'phoenix:elasticsearch:index';
 
     /**
-     * Holds object of IndexManager.
+     * Holds object of IndexService.
      *
-     * @var IndexManager
+     * @var IndexService
      */
-    protected IndexManager $indexManager;
+    protected IndexService $indexService;
 
     /**
      * Holds object of IndexFinder.
@@ -42,11 +42,11 @@ class IndexCommand extends AbstractCommand
     /**
      * Constructor.
      *
-     * @param IndexManager $indexManager
+     * @param IndexService $indexService
      */
-    public function __construct(IndexManager $indexManager, IndexFinder $indexFinder)
+    public function __construct(IndexService $indexService, IndexFinder $indexFinder)
     {
-        $this->indexManager = $indexManager;
+        $this->indexService = $indexService;
 
         $this->indexFinder = $indexFinder;
 
@@ -77,7 +77,9 @@ class IndexCommand extends AbstractCommand
     {
         $name = $this->input->getOption('name');
 
-        if ($this->indexManager->init($this->indexFinder->find($name))->create()) {
+        $index = $this->indexFinder->find($name);
+
+        if ($this->indexService->create($index->name(), $index->settings(), $index->mappings())) {
             $this->output->writeln('<fg=green;options=bold>Index successfully created.</>');
         } else {
             $this->output->writeln('<bg=red;fg=white;options=blink>Unable to create index, please try again.</>');
@@ -91,7 +93,9 @@ class IndexCommand extends AbstractCommand
     {
         $name = $this->input->getOption('name');
 
-        if ($this->indexManager->init($this->indexFinder->find($name))->delete()) {
+        $index = $this->indexFinder->find($name);
+
+        if ($this->indexService->delete($index->name())) {
             $this->output->writeln('<fg=green;options=bold>Index permanently deleted.</>');
         } else {
             $this->output->writeln('<bg=red;fg=white;options=blink>Unable to delete index, please try again.</>');
@@ -105,7 +109,9 @@ class IndexCommand extends AbstractCommand
     {
         $name = $this->input->getOption('name');
 
-        if ($this->indexManager->init($this->indexFinder->find($name))->exists()) {
+        $index = $this->indexFinder->find($name);
+
+        if ($this->indexService->exists($index->name())) {
             $this->output->writeln('<fg=green;options=bold>Index exists.</>');
         } else {
             $this->output->writeln('<bg=red;fg=white;options=blink>Index not present.</>');
@@ -119,7 +125,9 @@ class IndexCommand extends AbstractCommand
     {
         $name = $this->input->getOption('name');
 
-        print_r($this->indexManager->init($this->indexFinder->find($name))->mappings());
+        $index = $this->indexFinder->find($name);
+
+        print_r($this->indexService->mappings($index->name()));
     }
 
     /**
@@ -129,7 +137,9 @@ class IndexCommand extends AbstractCommand
     {
         $name = $this->input->getOption('name');
 
-        print_r($this->indexManager->init($this->indexFinder->find($name))->settings());
+        $index = $this->indexFinder->find($name);
+
+        print_r($this->indexService->settings($index->name()));
     }
 
     /**
@@ -139,7 +149,9 @@ class IndexCommand extends AbstractCommand
     {
         $name = $this->input->getOption('name');
 
-        if ($this->indexManager->init($this->indexFinder->find($name))->updateSettings()) {
+        $index = $this->indexFinder->find($name);
+
+        if ($this->indexService->updateSettings($index->name(), $index->settingsToUpdate())) {
             $this->output->writeln('<fg=green;options=bold>Settings successfully updated.</>');
         } else {
             $this->output->writeln('<bg=red;fg=white;options=blink>Unable to update settings, please try again.</>');
@@ -153,7 +165,9 @@ class IndexCommand extends AbstractCommand
     {
         $name = $this->input->getOption('name');
 
-        if ($this->indexManager->init($this->indexFinder->find($name))->updateMappings()) {
+        $index = $this->indexFinder->find($name);
+
+        if ($this->indexService->updateMappings($index->name(), $index->mappingsToUpdate())) {
             $this->output->writeln('<fg=green;options=bold>Mappings successfully updated.</>');
         } else {
             $this->output->writeln('<bg=red;fg=white;options=blink>Unable to update mappings, please try again.</>');

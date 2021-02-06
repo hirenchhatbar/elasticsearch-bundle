@@ -15,9 +15,9 @@ use Doctrine\ORM\QueryBuilder;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Phoenix\EasyElasticsearchBundle\Finder\IndexFinder;
-use Phoenix\EasyElasticsearchBundle\Manager\DocumentManager;
 use Phoenix\EasyElasticsearchBundle\Utils\Util;
+use Phoenix\EasyElasticsearchBundle\Service\DocumentService;
+use Phoenix\EasyElasticsearchBundle\Finder\IndexFinder;
 
 /**
  * Class DocumentCommand
@@ -30,11 +30,11 @@ class DocumentCommand extends AbstractPageCommand
     protected static $defaultName = 'phoenix:elasticsearch:document';
 
     /**
-     * Holds object of DocumentManager.
+     * Holds object of DocumentService.
      *
-     * @var DocumentManager
+     * @var DocumentService
      */
-    protected DocumentManager $documentManager;
+    protected DocumentService $documentService;
 
     /**
      * Holds object of IndexFinder.
@@ -46,12 +46,13 @@ class DocumentCommand extends AbstractPageCommand
     /**
      * Constructor.
      *
-     * @param DocumentManager $documentManager
+     * @param Util $util
+     * @param DocumentService $documentService
      * @param IndexFinder $indexFinder
      */
-    public function __construct(Util $util, DocumentManager $documentManager, IndexFinder $indexFinder)
+    public function __construct(Util $util, DocumentService $documentService, IndexFinder $indexFinder)
     {
-        $this->documentManager = $documentManager;
+        $this->documentService = $documentService;
 
         $this->indexFinder = $indexFinder;
 
@@ -68,8 +69,8 @@ class DocumentCommand extends AbstractPageCommand
         parent::configure();
 
         $this->addOption(
-            'name',
-            'na',
+            'index',
+            'idx',
             InputOption::VALUE_REQUIRED,
             'Name of index'
         );
@@ -103,7 +104,11 @@ class DocumentCommand extends AbstractPageCommand
      */
     protected function queryBuilder(int $page = 1): QueryBuilder
     {
+        $indexName = $this->input->getOption('index');
 
+        $index = $this->indexFinder->find($indexName);
+
+        return $index->document()->queryBuilder();
     }
 
     /**
@@ -113,7 +118,17 @@ class DocumentCommand extends AbstractPageCommand
      */
     public function sync(array $data): void
     {
+        $indexName = $this->input->getOption('index');
 
+        $index = $this->indexFinder->find($indexName);
+
+        $rows = [];
+
+        foreach ($data as $row) {
+            $rows[] = $index->document()->get($row['id']);
+        }
+
+        $this->documentService->indexBulk($index->name(), $rows);
     }
 
     /**
@@ -121,7 +136,13 @@ class DocumentCommand extends AbstractPageCommand
      */
     public function syncById(): void
     {
+        $indexName = $this->input->getOption('index');
 
+        $id = $this->input->getOption('id');
+
+        $index = $this->indexFinder->find($indexName);
+
+        $this->documentService->index($index->name(), $id, $index->document()->get());
     }
 
     /**
@@ -129,15 +150,11 @@ class DocumentCommand extends AbstractPageCommand
      */
     public function deleteAll(): void
     {
+        $indexName = $this->input->getOption('index');
 
-    }
+        $index = $this->indexFinder->find($indexName);
 
-    /**
-     * Deletes documents by query
-     */
-    public function deleteByQuery(): void
-    {
-
+        $this->documentService->deleteAll($index->name());
     }
 
     /**
@@ -145,6 +162,12 @@ class DocumentCommand extends AbstractPageCommand
      */
     public function deleteById(): void
     {
+        $indexName = $this->input->getOption('index');
 
+        $id = $this->input->getOption('id');
+
+        $index = $this->indexFinder->find($indexName);
+
+        $this->documentService->delete($index->name(), $id);
     }
 }

@@ -71,7 +71,7 @@ class DocumentService
      *
      * @link https://www.elastic.co/guide/en/elasticsearch/client/php-api/current/indexing_documents.html
      */
-    public function indexBulk(string $index, array $rows, string $idField = null)
+    public function indexBulk(string $index, array $rows, string $idField = 'id')
     {
         $params = [];
 

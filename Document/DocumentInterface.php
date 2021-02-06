@@ -23,9 +23,11 @@ interface DocumentInterface
     /**
      * Returns document.
      *
+     * @param int $id
+     *
      * @return array
      */
-    public function get(): array;
+    public function get(int $id): array;
 
     /**
      * Returns QueryBuilder to be used while sync documents.
