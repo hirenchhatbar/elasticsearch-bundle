@@ -14,3 +14,6 @@ services:
     Phoenix\EasyElasticsearchBundle\Utils\Util:
         class: Phoenix\EasyElasticsearchBundle\Utils\Util
         arguments: ['%kernel.project_dir%']
+
+    Phoenix\EasyElasticsearchBundle\Utils\Pagination:
+        class: Phoenix\EasyElasticsearchBundle\Utils\Pagination

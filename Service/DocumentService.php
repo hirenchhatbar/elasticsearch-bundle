@@ -196,4 +196,30 @@ class DocumentService
 
         return $this->deleteByQuery($index, $search);
     }
+
+    /**
+     * Searches documents.
+     *
+     * @param string $index
+     * @param Search $search
+     *
+     * @return array|callable
+     */
+    public function search(string $index, Search $search)
+    {
+        $params = [
+            'index' => $index,
+            'body' => $search->toArray(),
+        ];
+
+        if ($search->getFrom()) {
+            $params['from'] = $search->getFrom();
+        }
+
+        if ($search->getSize()) {
+            $params['size'] = $search->getSize();
+        }
+
+        return $this->clientService->get()->search($params);
+    }
 }

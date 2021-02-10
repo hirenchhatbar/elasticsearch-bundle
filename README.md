@@ -115,12 +115,12 @@ php bin/console phoenix:elasticsearch:document --index=location --id=10 get
 ## To-Do
 
 - Listing
-- Search
 - Sort
-- Pagination
+- Search
 
 ## Roadmap
 
+- Set bundle in packagist, make it composer friendly
 - Index deletion - ask confirmation
 - Pretty array with settings and mappings display on console
 - Reindexing - https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-reindex.html
