@@ -48,6 +48,16 @@ return [
 
 ## Commands
 
+### Server related commands
+
+```php
+// Pings server
+php bin/console phoenix:elasticsearch:client ping
+
+// Displays server info
+php bin/console phoenix:elasticsearch:client info
+```
+
 ### Index related commands
 
 ```php
@@ -114,8 +124,6 @@ php bin/console phoenix:elasticsearch:document --index=location --id=10 get
 
 ## To-Do
 
-- Listing
-- Sort
 - Search
 
 ## Roadmap
