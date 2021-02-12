@@ -105,4 +105,18 @@ class Util
 
         return $cmdStr;
     }
+
+    /**
+     * Escapes given string
+     *
+     * @param string $string
+     *
+     * @return string
+     */
+    public function escape(string $string): string
+    {
+        $regex = "/[\\+\\-\\=\\&\\|\\!\\(\\)\\{\\}\\[\\]\\^\\\"\\~\\*\\<\\>\\?\\:\\\\\\/]/";
+
+        return \preg_replace($regex, \addslashes('\\$0'), $string);
+    }
 }

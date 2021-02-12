@@ -122,9 +122,9 @@ php bin/console phoenix:elasticsearch:document --index=location --id=10 delete-b
 php bin/console phoenix:elasticsearch:document --index=location --id=10 get
 ```
 
-## To-Do
+## Todo
 
-- Search
+- Autocomplete
 
 ## Roadmap
 
@@ -134,5 +134,6 @@ php bin/console phoenix:elasticsearch:document --index=location --id=10 get
 - Reindexing - https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-reindex.html
 - Other APIs - https://www.elastic.co/guide/en/elasticsearch/reference/current/rest-apis.html
 - Analyzer / tokenizer - https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis.html
+- Aggregation
 
 ## Brainstroming
