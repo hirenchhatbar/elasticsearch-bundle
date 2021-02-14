@@ -1,6 +1,6 @@
 # PhoenixEasyElasticsearchBundle
 
-- [Core library](#core-library);
+- [Core library](#core-library)
 - [Manual installation](#manual-installation)
 - [Usage](#usage)
 - [Commands](#commands)
