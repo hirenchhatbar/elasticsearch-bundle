@@ -12,6 +12,7 @@
 namespace Phoenix\EasyElasticsearchBundle\Finder;
 
 use Phoenix\EasyElasticsearchBundle\Index\IndexInterface;
+use Phoenix\EasyElasticsearchBundle\Search\SearchInterface;
 
 /**
  * Class FinderInterface
@@ -23,7 +24,7 @@ interface FinderInterface
     /**
      * Finds IndexInterface class.
      *
-     * @return IndexInterface
+     * @return IndexInterface|SearchInterface
      */
-    public function find(string $name): IndexInterface;
+    public function find(string $name);
 }
