@@ -8,11 +8,11 @@
  * file that was distributed with this source code.
  */
 
-namespace Phoenix\EasyElasticsearchBundle\Utils;
+namespace Phoenix\ElasticsearchBundle\Utils;
 
 /**
  * Class Util
- * @package Phoenix\EasyElasticsearchBundle\Utils
+ * @package Phoenix\ElasticsearchBundle\Utils
  * @author Hiren Chhatbar
  */
 class Util

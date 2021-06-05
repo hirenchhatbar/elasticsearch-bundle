@@ -9,11 +9,11 @@
  * file that was distributed with this source code.
  */
 
-namespace Phoenix\EasyElasticsearchBundle\Search;
+namespace Phoenix\ElasticsearchBundle\Search;
 
 /**
  * Class SearchInterface
- * @package Phoenix\EasyElasticsearchBundle\Search
+ * @package Phoenix\ElasticsearchBundle\Search
  * @author Hiren Chhatbar
  */
 interface SearchInterface

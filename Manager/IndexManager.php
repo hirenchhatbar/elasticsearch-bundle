@@ -9,14 +9,14 @@
  * file that was distributed with this source code.
  */
 
-namespace Phoenix\EasyElasticsearchBundle\Manager;
+namespace Phoenix\ElasticsearchBundle\Manager;
 
-use Phoenix\EasyElasticsearchBundle\Index\AbstractIndex;
-use Phoenix\EasyElasticsearchBundle\Service\IndexService;
+use Phoenix\ElasticsearchBundle\Index\AbstractIndex;
+use Phoenix\ElasticsearchBundle\Service\IndexService;
 
 /**
  * Class IndexManager
- * @package Phoenix\EasyElasticsearchBundle\Manager
+ * @package Phoenix\ElasticsearchBundle\Manager
  * @author Hiren Chhatbar
  */
 class IndexManager
@@ -59,7 +59,7 @@ class IndexManager
      *
      * @param AbstractIndex $index
      *
-     * @return \Phoenix\EasyElasticsearchBundle\Manager\IndexManager
+     * @return \Phoenix\ElasticsearchBundle\Manager\IndexManager
      */
     public function init(AbstractIndex $index)
     {

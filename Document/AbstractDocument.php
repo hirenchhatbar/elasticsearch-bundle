@@ -9,11 +9,11 @@
  * file that was distributed with this source code.
  */
 
-namespace Phoenix\EasyElasticsearchBundle\Document;
+namespace Phoenix\ElasticsearchBundle\Document;
 
 /**
  * Class AbstractIndex
- * @package Phoenix\EasyElasticsearchBundle\Document
+ * @package Phoenix\ElasticsearchBundle\Document
  * @author Hiren Chhatbar
  */
 abstract class AbstractDocument implements DocumentInterface

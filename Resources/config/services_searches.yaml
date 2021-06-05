@@ -1,13 +1,13 @@
 services:
-    Phoenix\EasyElasticsearchBundle\Search\:
+    Phoenix\ElasticsearchBundle\Search\:
         resource: '../../Search/*'
         arguments:
-            - '@Phoenix\EasyElasticsearchBundle\Service\DocumentService'
-            - '@Phoenix\EasyElasticsearchBundle\Utils\Pagination'
-            - '@Phoenix\EasyElasticsearchBundle\Utils\Util'
+            - '@Phoenix\ElasticsearchBundle\Service\DocumentService'
+            - '@Phoenix\ElasticsearchBundle\Utils\Pagination'
+            - '@Phoenix\ElasticsearchBundle\Utils\Util'
 
     # this config only applies to the services created by this file
     _instanceof:
         # services whose classes are instances of ListenerInterface will be tagged automatically
-        Phoenix\EasyElasticsearchBundle\Search\SearchInterface:
+        Phoenix\ElasticsearchBundle\Search\SearchInterface:
             tags: ['es.search']

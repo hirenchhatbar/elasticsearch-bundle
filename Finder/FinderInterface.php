@@ -9,14 +9,14 @@
  * file that was distributed with this source code.
  */
 
-namespace Phoenix\EasyElasticsearchBundle\Finder;
+namespace Phoenix\ElasticsearchBundle\Finder;
 
-use Phoenix\EasyElasticsearchBundle\Index\IndexInterface;
-use Phoenix\EasyElasticsearchBundle\Search\SearchInterface;
+use Phoenix\ElasticsearchBundle\Index\IndexInterface;
+use Phoenix\ElasticsearchBundle\Search\SearchInterface;
 
 /**
  * Class FinderInterface
- * @package Phoenix\EasyElasticsearchBundle\Finder
+ * @package Phoenix\ElasticsearchBundle\Finder
  * @author Hiren Chhatbar
  */
 interface FinderInterface

@@ -9,13 +9,13 @@
  * file that was distributed with this source code.
  */
 
-namespace Phoenix\EasyElasticsearchBundle\Index;
+namespace Phoenix\ElasticsearchBundle\Index;
 
-use Phoenix\EasyElasticsearchBundle\Document\AbstractDocument;
+use Phoenix\ElasticsearchBundle\Document\AbstractDocument;
 
 /**
  * Class IndexInterface
- * @package Phoenix\EasyElasticsearchBundle\Index
+ * @package Phoenix\ElasticsearchBundle\Index
  * @author Hiren Chhatbar
  */
 interface IndexInterface

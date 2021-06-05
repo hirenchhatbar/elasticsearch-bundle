@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Phoenix\EasyElasticsearchBundle;
+namespace Phoenix\ElasticsearchBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 /**
- * Class PhoenixEasyElasticsearchBundle
- * @package Phoenix\EasyEasyElasticsearchBundle
+ * Class PhoenixElasticsearchBundle
+ * @package Phoenix\ElasticsearchBundle
  * @author Hiren Chhatbar
  */
-class PhoenixEasyElasticsearchBundle extends Bundle
+class PhoenixElasticsearchBundle extends Bundle
 {
 
 }

@@ -1,21 +1,21 @@
 services:
-    Phoenix\EasyElasticsearchBundle\Command\:
+    Phoenix\ElasticsearchBundle\Command\:
         resource: '../../Command/*'
 
-    Phoenix\EasyElasticsearchBundle\Command\ClientCommand:
-        arguments: ['@Phoenix\EasyElasticsearchBundle\Service\ClientService']
+    Phoenix\ElasticsearchBundle\Command\ClientCommand:
+        arguments: ['@Phoenix\ElasticsearchBundle\Service\ClientService']
 
-    Phoenix\EasyElasticsearchBundle\Command\IndexCommand:
-        arguments: ['@Phoenix\EasyElasticsearchBundle\Service\IndexService', '@Phoenix\EasyElasticsearchBundle\Finder\IndexFinder']
+    Phoenix\ElasticsearchBundle\Command\IndexCommand:
+        arguments: ['@Phoenix\ElasticsearchBundle\Service\IndexService', '@Phoenix\ElasticsearchBundle\Finder\IndexFinder']
 
-    Phoenix\EasyElasticsearchBundle\Command\DocumentCommand:
+    Phoenix\ElasticsearchBundle\Command\DocumentCommand:
         arguments:
-            - '@Phoenix\EasyElasticsearchBundle\Utils\Util'
-            - '@Phoenix\EasyElasticsearchBundle\Service\DocumentService'
-            - '@Phoenix\EasyElasticsearchBundle\Finder\IndexFinder'
+            - '@Phoenix\ElasticsearchBundle\Utils\Util'
+            - '@Phoenix\ElasticsearchBundle\Service\DocumentService'
+            - '@Phoenix\ElasticsearchBundle\Finder\IndexFinder'
 
     # this config only applies to the services created by this file
     _instanceof:
         # services whose classes are instances of AbstractCommand will be tagged automatically
-        Phoenix\EasyElasticsearchBundle\Command\AbstractCommand:
+        Phoenix\ElasticsearchBundle\Command\AbstractCommand:
             tags: [console.command]

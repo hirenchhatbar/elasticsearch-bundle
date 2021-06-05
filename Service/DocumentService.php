@@ -9,14 +9,14 @@
  * file that was distributed with this source code.
  */
 
-namespace Phoenix\EasyElasticsearchBundle\Service;
+namespace Phoenix\ElasticsearchBundle\Service;
 
 use ONGR\ElasticsearchDSL\Search;
 use ONGR\ElasticsearchDSL\Query\MatchAllQuery;
 
 /**
  * Class DocumentService
- * @package Phoenix\EasyElasticsearchBundle\Service
+ * @package Phoenix\ElasticsearchBundle\Service
  * @author Hiren Chhatbar
  */
 class DocumentService

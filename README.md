@@ -1,4 +1,4 @@
-# PhoenixEasyElasticsearchBundle
+# PhoenixElasticsearchBundle
 
 - [Core library](#core-library)
 - [Manual installation](#manual-installation)
@@ -18,8 +18,8 @@
 - Clone repository.
 
 ```sh
-# https://gitlab.com/phoenix-code-labs/phoenix/phoenix-easy-elasticsearch-bundle
-git clone https://gitlab.com/phoenix-code-labs/phoenix/phoenix-easy-elasticsearch-bundle.git
+# https://gitlab.com/phoenix-code-labs/phoenix/phoenix-elasticsearch-bundle
+git clone https://gitlab.com/phoenix-code-labs/phoenix/phoenix-elasticsearch-bundle.git
 ```
 
 - Install dependancies.
@@ -39,7 +39,7 @@ composer require ongr/elasticsearch-dsl
     "psr-4": {
         "App\\": "src/",
 
-        "Phoenix\\EasyElasticsearchBundle\\": "vendor/phoenix/easy-elasticsearch-bundle/"
+        "Phoenix\\ElasticsearchBundle\\": "vendor/phoenix/elasticsearch-bundle/"
     }
 },
 ```
@@ -49,7 +49,7 @@ composer require ongr/elasticsearch-dsl
 ```php
 // config/bundles.php
 return [
-    Phoenix\EasyElasticsearchBundle\PhoenixEasyElasticsearchBundle::class => ['all' => true],
+    Phoenix\ElasticsearchBundle\PhoenixElasticsearchBundle::class => ['all' => true],
 ]
 ```
 ## Usage
@@ -57,7 +57,7 @@ return [
 ### Create index class and register it as service with 'es.index' tag:
 
 ```php
-// vendor/phoenix/easy-api-bundle/Elasticsearch/Index/LocationIndex.php
+// vendor/phoenix/api-bundle/Elasticsearch/Index/LocationIndex.php
 
 <?php
 /*
@@ -68,15 +68,15 @@ return [
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-namespace Phoenix\EasyApiBundle\Elasticsearch\Index;
+namespace Phoenix\ApiBundle\Elasticsearch\Index;
 
-use Phoenix\EasyElasticsearchBundle\Index\AbstractIndex;
-use Phoenix\EasyApiBundle\Elasticsearch\Document\LocationDocument;
+use Phoenix\ElasticsearchBundle\Index\AbstractIndex;
+use Phoenix\ApiBundle\Elasticsearch\Document\LocationDocument;
 
 /**
  * Class LocationIndex
  *
- * @package Phoenix\EasyApiBundle\Index
+ * @package Phoenix\ApiBundle\Index
  * @author Hiren Chhatbar
  */
 class LocationIndex extends AbstractIndex
@@ -101,7 +101,7 @@ class LocationIndex extends AbstractIndex
     /**
      * {@inheritDoc}
      *
-     * @see \Phoenix\EasyElasticsearchBundle\Index\AbstractIndex::settings()
+     * @see \Phoenix\ElasticsearchBundle\Index\AbstractIndex::settings()
      */
     public function settings(): array
     {
@@ -113,7 +113,7 @@ class LocationIndex extends AbstractIndex
     /**
      * {@inheritDoc}
      *
-     * @see \Phoenix\EasyElasticsearchBundle\Index\AbstractIndex::mappings()
+     * @see \Phoenix\ElasticsearchBundle\Index\AbstractIndex::mappings()
      */
     public function mappings(): array
     {
@@ -157,19 +157,19 @@ class LocationIndex extends AbstractIndex
 ```
 
 ```yaml
-# vendor/phoenix/easy-api-bundle/Resources/config/services_elasticsearch.yaml
+# vendor/phoenix/api-bundle/Resources/config/services_elasticsearch.yaml
 
-Phoenix\EasyApiBundle\Elasticsearch\Index\LocationIndex:
-    arguments: ['@Phoenix\EasyApiBundle\Elasticsearch\Document\LocationDocument']
+Phoenix\ApiBundle\Elasticsearch\Index\LocationIndex:
+    arguments: ['@Phoenix\ApiBundle\Elasticsearch\Document\LocationDocument']
     tags: ['es.index']
     calls:
-        - [setPrefix, ['%es.index_prefix%']]
+        - [setPrefix, ['%pes.index_prefix%']]
 ```
 
 ### Create document class and register it as service with 'es.document' tag:
 
 ```php
-// vendor/phoenix/easy-api-bundle/Elasticsearch/Document/LocationDocument.php
+// vendor/phoenix/api-bundle/Elasticsearch/Document/LocationDocument.php
 
 <?php
 
@@ -181,28 +181,28 @@ Phoenix\EasyApiBundle\Elasticsearch\Index\LocationIndex:
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-namespace Phoenix\EasyApiBundle\Elasticsearch\Document;
+namespace Phoenix\ApiBundle\Elasticsearch\Document;
 
-use Phoenix\EasyElasticsearchBundle\Document\AbstractDocument;
+use Phoenix\ElasticsearchBundle\Document\AbstractDocument;
 use Doctrine\ORM\QueryBuilder;
-use Phoenix\EasyQueryBundle\Service\EasyQueryService;
+use Phoenix\QueryBundle\Service\QueryService;
 use App\Entity\Location;
-use Phoenix\EasyApiBundle\EntityService\LocationService;
+use Phoenix\ApiBundle\EntityService\LocationService;
 
 /**
  * Class LocationDocument
  *
- * @package Phoenix\EasyApiBundle\Document
+ * @package Phoenix\ApiBundle\Document
  * @author Hiren Chhatbar
  */
 class LocationDocument extends AbstractDocument
 {
     /**
-     * Holds object of EasyQueryService.
+     * Holds object of QueryService.
      *
-     * @var EasyQueryService
+     * @var QueryService
      */
-    protected EasyQueryService $easyQueryService;
+    protected QueryService $queryService;
 
     /**
      * Holds object of LocationService.
@@ -214,12 +214,12 @@ class LocationDocument extends AbstractDocument
     /**
      * Constructor.
      *
-     * @param EasyQueryService $easyQueryService
+     * @param QueryService $queryService
      * @param LocationService $locationService
      */
-    public function __construct(EasyQueryService $easyQueryService, LocationService $locationService)
+    public function __construct(QueryService $queryService, LocationService $locationService)
     {
-        $this->easyQueryService = $easyQueryService;
+        $this->queryService = $queryService;
 
         $this->locationService = $locationService;
     }
@@ -227,11 +227,11 @@ class LocationDocument extends AbstractDocument
     /**
      * {@inheritDoc}
      *
-     * @see \Phoenix\EasyElasticsearchBundle\Document\DocumentInterface::get()
+     * @see \Phoenix\ElasticsearchBundle\Document\DocumentInterface::get()
      */
     public function get(int $id): array
     {
-        $res = $this->easyQueryService->select('location__find_one', ['id' => $id]);
+        $res = $this->queryService->select('location__find_one', ['id' => $id]);
 
         $row = \reset($res['rows']);
 
@@ -239,7 +239,7 @@ class LocationDocument extends AbstractDocument
             $row['lat_long'] = sprintf('%s,%s', $row['latitude'], $row['longitude']);
         }
 
-        $resTrans = $this->easyQueryService->select('location__translation', ['object' => $id]);
+        $resTrans = $this->queryService->select('location__translation', ['object' => $id]);
 
         foreach ($resTrans['rows'] as $rowTrans) {
             unset($rowTrans['id']);
@@ -265,11 +265,11 @@ class LocationDocument extends AbstractDocument
     /**
      * {@inheritDoc}
      *
-     * @see \Phoenix\EasyElasticsearchBundle\Document\DocumentInterface::queryBuilder()
+     * @see \Phoenix\ElasticsearchBundle\Document\DocumentInterface::queryBuilder()
      */
     public function queryBuilder(): QueryBuilder
     {
-        $qb = $this->easyQueryService->repository(Location::class)->createQueryBuilder('l');
+        $qb = $this->queryService->repository(Location::class)->createQueryBuilder('l');
 
         $qb->select('l.id');
 
@@ -279,17 +279,17 @@ class LocationDocument extends AbstractDocument
 ```
 
 ```yaml
-# vendor/phoenix/easy-api-bundle/Resources/config/services_elasticsearch.yaml
+# vendor/phoenix/api-bundle/Resources/config/services_elasticsearch.yaml
 
-Phoenix\EasyApiBundle\Elasticsearch\Document\LocationDocument:
-    arguments: ['@Phoenix\EasyQueryBundle\Service\EasyQueryService', '@Phoenix\EasyApiBundle\EntityService\LocationService']
+Phoenix\ApiBundle\Elasticsearch\Document\LocationDocument:
+    arguments: ['@Phoenix\QueryBundle\Service\QueryService', '@Phoenix\ApiBundle\EntityService\LocationService']
     tags: ['es.document']
 ```
 
-### Use DI (Dependancy Injection) and use Phoenix\EasyElasticsearchBundle\Service and its search method to execute search query:
+### Use DI (Dependancy Injection) and use Phoenix\ElasticsearchBundle\Service and its search method to execute search query:
 
 ```php
-// vendor/phoenix/easy-api-bundle/CrudManipulator/LocationAdminCrudManipulator.php
+// vendor/phoenix/api-bundle/CrudManipulator/LocationAdminCrudManipulator.php
 
 <?php
 /*
@@ -301,22 +301,22 @@ Phoenix\EasyApiBundle\Elasticsearch\Document\LocationDocument:
  * file that was distributed with this source code.
  */
 
-namespace Phoenix\EasyApiBundle\CrudManipulator;
+namespace Phoenix\ApiBundle\CrudManipulator;
 
 use ONGR\ElasticsearchDSL\Search;
-use Phoenix\EasyElasticsearchBundle\Service\DocumentService;
+use Phoenix\ElasticsearchBundle\Service\DocumentService;
 use ONGR\ElasticsearchDSL\Query\MatchAllQuery;
-use Phoenix\EasyApiBundle\Elasticsearch\Index\LocationIndex;
-use Phoenix\EasyElasticsearchBundle\Utils\Pagination;
+use Phoenix\ApiBundle\Elasticsearch\Index\LocationIndex;
+use Phoenix\ElasticsearchBundle\Utils\Pagination;
 use ONGR\ElasticsearchDSL\Sort\FieldSort;
 use ONGR\ElasticsearchDSL\Query\TermLevel\TermQuery;
 use ONGR\ElasticsearchDSL\Query\TermLevel\WildcardQuery;
-use Phoenix\EasyElasticsearchBundle\Utils\Util;
+use Phoenix\ElasticsearchBundle\Utils\Util;
 
 /**
  * Class LocationCrudManipulator
  *
- * @package Phoenix\EasyApiBundle\CrudManipulator
+ * @package Phoenix\ApiBundle\CrudManipulator
  * @author Hiren Chhatbar
  */
 class LocationAdminCrudManipulator extends AbstractCrudManipulator

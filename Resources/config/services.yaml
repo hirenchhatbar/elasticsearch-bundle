@@ -1,19 +1,19 @@
 services:
-    Phoenix\EasyElasticsearchBundle\Service\:
+    Phoenix\ElasticsearchBundle\Service\:
         resource: '../../Service/*'
 
-    Phoenix\EasyElasticsearchBundle\Service\ClientService:
-        arguments: ['%es.hosts%']
+    Phoenix\ElasticsearchBundle\Service\ClientService:
+        arguments: ['%pes.hosts%']
 
-    Phoenix\EasyElasticsearchBundle\Service\IndexService:
-        arguments: ['@Phoenix\EasyElasticsearchBundle\Service\ClientService']
+    Phoenix\ElasticsearchBundle\Service\IndexService:
+        arguments: ['@Phoenix\ElasticsearchBundle\Service\ClientService']
 
-    Phoenix\EasyElasticsearchBundle\Service\DocumentService:
-        arguments: ['@Phoenix\EasyElasticsearchBundle\Service\ClientService']
+    Phoenix\ElasticsearchBundle\Service\DocumentService:
+        arguments: ['@Phoenix\ElasticsearchBundle\Service\ClientService']
 
-    Phoenix\EasyElasticsearchBundle\Utils\Util:
-        class: Phoenix\EasyElasticsearchBundle\Utils\Util
+    Phoenix\ElasticsearchBundle\Utils\Util:
+        class: Phoenix\ElasticsearchBundle\Utils\Util
         arguments: ['%kernel.project_dir%']
 
-    Phoenix\EasyElasticsearchBundle\Utils\Pagination:
-        class: Phoenix\EasyElasticsearchBundle\Utils\Pagination
+    Phoenix\ElasticsearchBundle\Utils\Pagination:
+        class: Phoenix\ElasticsearchBundle\Utils\Pagination

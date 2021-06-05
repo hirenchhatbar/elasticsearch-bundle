@@ -9,18 +9,18 @@
  * file that was distributed with this source code.
  */
 
-namespace Phoenix\EasyElasticsearchBundle\Command;
+namespace Phoenix\ElasticsearchBundle\Command;
 
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Phoenix\EasyElasticsearchBundle\Utils\Util;
+use Phoenix\ElasticsearchBundle\Utils\Util;
 use Doctrine\ORM\QueryBuilder;
 
 /**
  * Class AbstractPageCommand
- * @package Phoenix\EasyElasticsearchBundle\Command
+ * @package Phoenix\ElasticsearchBundle\Command
  * @author Hiren Chhatbar
  */
 abstract class AbstractPageCommand extends AbstractCommand
@@ -57,7 +57,7 @@ abstract class AbstractPageCommand extends AbstractCommand
     /**
      * {@inheritDoc}
      *
-     * @see \Phoenix\EasyElasticsearchBundle\Command\AbstractCommand::configure()
+     * @see \Phoenix\ElasticsearchBundle\Command\AbstractCommand::configure()
      */
     protected function configure()
     {

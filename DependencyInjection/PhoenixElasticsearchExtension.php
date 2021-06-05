@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Phoenix\EasyElasticsearchBundle\DependencyInjection;
+namespace Phoenix\ElasticsearchBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
@@ -17,11 +17,11 @@ use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use Symfony\Component\Config\FileLocator;
 
 /**
- * Class PhoenixEasyElasticsearchExtension
- * @package Phoenix\EasyElasticsearchBundle\DependencyInjection
+ * Class PhoenixElasticsearchExtension
+ * @package Phoenix\ElasticsearchBundle\DependencyInjection
  * @author Hiren Chhatbar
  */
-class PhoenixEasyElasticsearchExtension extends Extension
+class PhoenixElasticsearchExtension extends Extension
 {
     /**
      * Loads.

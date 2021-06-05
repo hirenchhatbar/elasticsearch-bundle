@@ -9,13 +9,13 @@
  * file that was distributed with this source code.
  */
 
-namespace Phoenix\EasyElasticsearchBundle\Document;
+namespace Phoenix\ElasticsearchBundle\Document;
 
 use Doctrine\ORM\QueryBuilder;
 
 /**
  * Class DocumentInterface
- * @package Phoenix\EasyElasticsearchBundle\Document
+ * @package Phoenix\ElasticsearchBundle\Document
  * @author Hiren Chhatbar
  */
 interface DocumentInterface

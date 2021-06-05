@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Phoenix\EasyElasticsearchBundle\Search;
+namespace Phoenix\ElasticsearchBundle\Search;
 
-use Phoenix\EasyElasticsearchBundle\Service\DocumentService;
-use Phoenix\EasyElasticsearchBundle\Utils\Pagination;
-use Phoenix\EasyElasticsearchBundle\Utils\Util;
-use Phoenix\EasyElasticsearchBundle\Index\AbstractIndex;
+use Phoenix\ElasticsearchBundle\Service\DocumentService;
+use Phoenix\ElasticsearchBundle\Utils\Pagination;
+use Phoenix\ElasticsearchBundle\Utils\Util;
+use Phoenix\ElasticsearchBundle\Index\AbstractIndex;
 
 /**
  * Class AbstractSearch
- * @package Phoenix\EasyElasticsearchBundle\Search
+ * @package Phoenix\ElasticsearchBundle\Search
  * @author Hiren Chhatbar
  */
 abstract class AbstractSearch implements SearchInterface

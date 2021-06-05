@@ -9,19 +9,19 @@
  * file that was distributed with this source code.
  */
 
-namespace Phoenix\EasyElasticsearchBundle\Command;
+namespace Phoenix\ElasticsearchBundle\Command;
 
 use Doctrine\ORM\QueryBuilder;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Phoenix\EasyElasticsearchBundle\Utils\Util;
-use Phoenix\EasyElasticsearchBundle\Service\DocumentService;
-use Phoenix\EasyElasticsearchBundle\Finder\IndexFinder;
+use Phoenix\ElasticsearchBundle\Utils\Util;
+use Phoenix\ElasticsearchBundle\Service\DocumentService;
+use Phoenix\ElasticsearchBundle\Finder\IndexFinder;
 
 /**
  * Class DocumentCommand
- * @package Phoenix\EasyElasticsearchBundle\Command
+ * @package Phoenix\ElasticsearchBundle\Command
  * @author Hiren Chhatbar
  */
 class DocumentCommand extends AbstractPageCommand
@@ -62,7 +62,7 @@ class DocumentCommand extends AbstractPageCommand
     /**
      * {@inheritDoc}
      *
-     * @see \Phoenix\EasyElasticsearchBundle\Command\AbstractPageCommand::configure()
+     * @see \Phoenix\ElasticsearchBundle\Command\AbstractPageCommand::configure()
      */
     protected function configure()
     {
@@ -86,7 +86,7 @@ class DocumentCommand extends AbstractPageCommand
     /**
      * {@inheritDoc}
      *
-     * @see \Phoenix\EasyElasticsearchBundle\Command\AbstractPageCommand::execute()
+     * @see \Phoenix\ElasticsearchBundle\Command\AbstractPageCommand::execute()
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
@@ -100,7 +100,7 @@ class DocumentCommand extends AbstractPageCommand
     /**
      * {@inheritDoc}
      *
-     * @see \Phoenix\EasyElasticsearchBundle\Command\AbstractPageCommand::queryBuilder()
+     * @see \Phoenix\ElasticsearchBundle\Command\AbstractPageCommand::queryBuilder()
      */
     protected function queryBuilder(int $page = 1): QueryBuilder
     {

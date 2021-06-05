@@ -9,11 +9,11 @@
  * file that was distributed with this source code.
  */
 
-namespace Phoenix\EasyElasticsearchBundle\Service;
+namespace Phoenix\ElasticsearchBundle\Service;
 
 /**
  * Class IndexService
- * @package Phoenix\EasyElasticsearchBundle\Service
+ * @package Phoenix\ElasticsearchBundle\Service
  * @author Hiren Chhatbar
  * @link https://www.elastic.co/guide/en/elasticsearch/client/php-api/current/index_management.html
  */

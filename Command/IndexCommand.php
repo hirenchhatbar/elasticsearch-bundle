@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Phoenix\EasyElasticsearchBundle\Command;
+namespace Phoenix\ElasticsearchBundle\Command;
 
-use Phoenix\EasyElasticsearchBundle\Service\IndexService;
-use Phoenix\EasyElasticsearchBundle\Finder\IndexFinder;
+use Phoenix\ElasticsearchBundle\Service\IndexService;
+use Phoenix\ElasticsearchBundle\Finder\IndexFinder;
 use Symfony\Component\Console\Input\InputOption;
 
 /**
  * Class IndexCommand
- * @package Phoenix\EasyElasticsearchBundle\Command
+ * @package Phoenix\ElasticsearchBundle\Command
  * @author Hiren Chhatbar
  */
 class IndexCommand extends AbstractCommand
@@ -56,7 +56,7 @@ class IndexCommand extends AbstractCommand
     /**
      * {@inheritDoc}
      *
-     * @see \Phoenix\EasyElasticsearchBundle\Command\AbstractCommand::configure()
+     * @see \Phoenix\ElasticsearchBundle\Command\AbstractCommand::configure()
      */
     protected function configure()
     {

@@ -9,13 +9,13 @@
  * file that was distributed with this source code.
  */
 
-namespace Phoenix\EasyElasticsearchBundle\Finder;
+namespace Phoenix\ElasticsearchBundle\Finder;
 
-use Phoenix\EasyElasticsearchBundle\Search\SearchInterface;
+use Phoenix\ElasticsearchBundle\Search\SearchInterface;
 
 /**
  * Class SearchFinder
- * @package Phoenix\EasyElasticsearchBundle\Finder
+ * @package Phoenix\ElasticsearchBundle\Finder
  * @author Hiren Chhatbar
  */
 class SearchFinder extends AbstractFinder
@@ -23,7 +23,7 @@ class SearchFinder extends AbstractFinder
     /**
      * {@inheritDoc}
      *
-     * @see \Phoenix\EasyElasticsearchBundle\Finder\FinderInterface::find()
+     * @see \Phoenix\ElasticsearchBundle\Finder\FinderInterface::find()
      */
     public function find(string $name): SearchInterface
     {

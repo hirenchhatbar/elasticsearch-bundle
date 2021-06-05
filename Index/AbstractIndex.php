@@ -9,13 +9,13 @@
  * file that was distributed with this source code.
  */
 
-namespace Phoenix\EasyElasticsearchBundle\Index;
+namespace Phoenix\ElasticsearchBundle\Index;
 
-use Phoenix\EasyElasticsearchBundle\Document\AbstractDocument;
+use Phoenix\ElasticsearchBundle\Document\AbstractDocument;
 
 /**
  * Class AbstractIndex
- * @package Phoenix\EasyElasticsearchBundle\Index
+ * @package Phoenix\ElasticsearchBundle\Index
  * @author Hiren Chhatbar
  */
 abstract class AbstractIndex implements IndexInterface
@@ -44,7 +44,7 @@ abstract class AbstractIndex implements IndexInterface
     /**
      * {@inheritDoc}
      *
-     * @see \Phoenix\EasyElasticsearchBundle\Index\IndexInterface::mappingsToUpdate()
+     * @see \Phoenix\ElasticsearchBundle\Index\IndexInterface::mappingsToUpdate()
      */
     public function mappingsToUpdate(): array
     {
@@ -54,7 +54,7 @@ abstract class AbstractIndex implements IndexInterface
     /**
      * {@inheritDoc}
      *
-     * @see \Phoenix\EasyElasticsearchBundle\Index\IndexInterface::settingsToUpdate()
+     * @see \Phoenix\ElasticsearchBundle\Index\IndexInterface::settingsToUpdate()
      */
     public function settingsToUpdate(): array
     {
@@ -64,7 +64,7 @@ abstract class AbstractIndex implements IndexInterface
     /**
      * {@inheritDoc}
      *
-     * @see \Phoenix\EasyElasticsearchBundle\Index\IndexInterface::mappings()
+     * @see \Phoenix\ElasticsearchBundle\Index\IndexInterface::mappings()
      * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-types.html
      */
     abstract public function mappings(): array;
@@ -72,7 +72,7 @@ abstract class AbstractIndex implements IndexInterface
     /**
      * {@inheritDoc}
      *
-     * @see \Phoenix\EasyElasticsearchBundle\Index\IndexInterface::settings()
+     * @see \Phoenix\ElasticsearchBundle\Index\IndexInterface::settings()
      */
     abstract public function settings(): array;
 
@@ -156,7 +156,7 @@ abstract class AbstractIndex implements IndexInterface
     /**
      * {@inheritDoc}
      *
-     * @see \Phoenix\EasyElasticsearchBundle\Index\IndexInterface::document()
+     * @see \Phoenix\ElasticsearchBundle\Index\IndexInterface::document()
      */
     final public function document(): AbstractDocument
     {

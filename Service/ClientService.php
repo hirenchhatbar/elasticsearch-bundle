@@ -9,14 +9,14 @@
  * file that was distributed with this source code.
  */
 
-namespace Phoenix\EasyElasticsearchBundle\Service;
+namespace Phoenix\ElasticsearchBundle\Service;
 
 use Elasticsearch\ClientBuilder;
 use Elasticsearch\Client;
 
 /**
  * Class ClientService
- * @package Phoenix\EasyElasticsearchBundle\Service
+ * @package Phoenix\ElasticsearchBundle\Service
  * @author Hiren Chhatbar
  * @link https://www.elastic.co/guide/en/elasticsearch/client/php-api/current/connceting.html
  * @link https://symfony.com/doc/current/service_container/shared.html

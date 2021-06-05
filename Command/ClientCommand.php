@@ -9,13 +9,13 @@
  * file that was distributed with this source code.
  */
 
-namespace Phoenix\EasyElasticsearchBundle\Command;
+namespace Phoenix\ElasticsearchBundle\Command;
 
-use Phoenix\EasyElasticsearchBundle\Service\ClientService;
+use Phoenix\ElasticsearchBundle\Service\ClientService;
 
 /**
  * Class ClientCommand
- * @package Phoenix\EasyElasticsearchBundle\Command
+ * @package Phoenix\ElasticsearchBundle\Command
  * @author Hiren Chhatbar
  */
 class ClientCommand extends AbstractCommand
@@ -45,7 +45,7 @@ class ClientCommand extends AbstractCommand
     /**
      * {@inheritDoc}
      *
-     * @see \Phoenix\EasyElasticsearchBundle\Command\AbstractCommand::configure()
+     * @see \Phoenix\ElasticsearchBundle\Command\AbstractCommand::configure()
      */
     protected function configure()
     {

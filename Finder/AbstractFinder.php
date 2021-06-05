@@ -9,11 +9,11 @@
  * file that was distributed with this source code.
  */
 
-namespace Phoenix\EasyElasticsearchBundle\Finder;
+namespace Phoenix\ElasticsearchBundle\Finder;
 
 /**
  * Class AbstractFinder
- * @package Phoenix\EasyElasticsearchBundle\Finder
+ * @package Phoenix\ElasticsearchBundle\Finder
  * @author Hiren Chhatbar
  */
 abstract class AbstractFinder implements FinderInterface

@@ -9,14 +9,14 @@
  * file that was distributed with this source code.
  */
 
-namespace Phoenix\EasyElasticsearchBundle\DependencyInjection;
+namespace Phoenix\ElasticsearchBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
 /**
  * Class Configuration
- * @package Phoenix\EasyElasticsearchBundle\DependencyInjection
+ * @package Phoenix\ElasticsearchBundle\DependencyInjection
  * @author Hiren Chhatbar
  */
 class Configuration implements ConfigurationInterface
@@ -28,9 +28,9 @@ class Configuration implements ConfigurationInterface
      */
     public function getConfigTreeBuilder()
     {
-        $treeBuilder = new TreeBuilder('phoenix_easy_elasticsearch');
+        $treeBuilder = new TreeBuilder('phoenix_elasticsearch');
 
-        //    $rootNode = $treeBuilder->root('phoenix_easy_elasticsearch');
+        //    $rootNode = $treeBuilder->root('phoenix_elasticsearch');
 
         return $treeBuilder;
     }
