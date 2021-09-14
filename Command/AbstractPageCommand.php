@@ -104,9 +104,13 @@ abstract class AbstractPageCommand extends AbstractCommand
     {
         $qb = $this->queryBuilder();
 
+        $aliases = $qb->getRootAliases();
+
+        $alias = \reset($aliases);
+
         $cntQb = clone $qb;
 
-        $cntQb->select('COUNT(l.id)');
+        $cntQb->select(sprintf('COUNT(%s.id)', $alias));
 
         $cntQb->resetDQLPart('orderBy');
         $cntQb->resetDQLPart('distinct');
