@@ -1,6 +1,6 @@
 services:
     Phoenix\ElasticsearchBundle\Finder\IndexFinder:
-        arguments: [!tagged es.index]
+        arguments: [!tagged_iterator es.index]
 
     Phoenix\ElasticsearchBundle\Finder\SearchFinder:
-        arguments: [!tagged es.search]
+        arguments: [!tagged_locator es.search]

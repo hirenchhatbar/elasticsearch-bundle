@@ -12,24 +12,10 @@
 namespace Phoenix\ElasticsearchBundle\Finder;
 
 /**
- * Class AbstractFinder
- * @package Phoenix\ElasticsearchBundle\Finder
+ * Class AbstractFinder.
+ *
  * @author Hiren Chhatbar
  */
 abstract class AbstractFinder implements FinderInterface
 {
-    /**
-     * @var iterable
-     */
-    protected $handlers;
-
-    /**
-     * Constructor.
-     *
-     * @param iterable $handlers
-     */
-    public function __construct(iterable $handlers)
-    {
-        $this->handlers = $handlers;
-    }
 }

@@ -14,12 +14,25 @@ namespace Phoenix\ElasticsearchBundle\Finder;
 use Phoenix\ElasticsearchBundle\Index\IndexInterface;
 
 /**
- * Class IndexFinder
- * @package Phoenix\ElasticsearchBundle\Finder
+ * Class IndexFinder.
+ *
  * @author Hiren Chhatbar
  */
 class IndexFinder extends AbstractFinder
 {
+    /**
+     * @var iterable
+     */
+    protected $handlers;
+
+    /**
+     * Constructor.
+     */
+    public function __construct(iterable $handlers)
+    {
+        $this->handlers = $handlers;
+    }
+
     /**
      * {@inheritDoc}
      *

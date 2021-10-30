@@ -12,14 +12,28 @@
 namespace Phoenix\ElasticsearchBundle\Finder;
 
 use Phoenix\ElasticsearchBundle\Search\SearchInterface;
+use Symfony\Component\DependencyInjection\ServiceLocator;
 
 /**
- * Class SearchFinder
- * @package Phoenix\ElasticsearchBundle\Finder
+ * Class SearchFinder.
+ *
  * @author Hiren Chhatbar
  */
 class SearchFinder extends AbstractFinder
 {
+    /**
+     * @var ServiceLocator
+     */
+    protected $locator;
+
+    /**
+     * Constructor.
+     */
+    public function __construct(ServiceLocator $locator)
+    {
+        $this->locator = $locator;
+    }
+
     /**
      * {@inheritDoc}
      *
@@ -27,10 +41,8 @@ class SearchFinder extends AbstractFinder
      */
     public function find(string $name): SearchInterface
     {
-        foreach ($this->handlers as $handler) {
-            if ($name == get_class($handler) || is_subclass_of($handler, $name)) {
-                return $handler;
-            }
+        if ($this->locator->has($name)) {
+            return $this->locator->get($name);
         }
 
         throw new \Exception(sprintf('Search %s not found', $name));
