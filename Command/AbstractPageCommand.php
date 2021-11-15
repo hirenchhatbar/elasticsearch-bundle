@@ -30,7 +30,7 @@ abstract class AbstractPageCommand extends AbstractCommand
      *
      * @var string
      */
-    protected int $perPage = 100;
+    protected int $perPage = 500;
 
     /**
      * Whether to perform process in bulk or not.
