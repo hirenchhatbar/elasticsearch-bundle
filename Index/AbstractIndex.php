@@ -91,7 +91,7 @@ abstract class AbstractIndex implements IndexInterface
             'index.mapping.total_fields.limit' => 3000,
 
             // How often to perform a refresh operation, which makes recent changes to the index visible to search. Defaults to 1s.
-            'refresh_interval' => '30s',
+            'refresh_interval' => '1s',
 
             // The number of primary shards that an index should have. Defaults to 1.
             'number_of_shards' => 1,
