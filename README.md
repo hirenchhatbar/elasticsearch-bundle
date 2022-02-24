@@ -239,7 +239,7 @@ class LocationDocument extends AbstractDocument
             $row['lat_long'] = sprintf('%s,%s', $row['latitude'], $row['longitude']);
         }
 
-        $resTrans = $this->queryService->select('location__translation', ['object' => $id]);
+        $resTrans = $this->queryService->select('location_translation__find_by_object', ['object' => $id]);
 
         foreach ($resTrans['rows'] as $rowTrans) {
             unset($rowTrans['id']);
