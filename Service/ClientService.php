@@ -30,6 +30,8 @@ class ClientService
      */
     protected array $hosts;
 
+    protected ?string $sslCert = null;
+
     /**
      * Holds object of Client.
      *
@@ -42,9 +44,10 @@ class ClientService
      *
      * @param array $hosts
      */
-    public function __construct(array $hosts)
+    public function __construct(array $hosts, ?string $sslCert = null)
     {
         $this->hosts = $hosts;
+        $this->sslCert = $sslCert;
 
         if (!isset($this->client)) {
             $this->set();
@@ -66,9 +69,12 @@ class ClientService
      */
     public function set(): void
     {
-        $this->client = ClientBuilder::create()
-            ->setHosts($this->hosts)
-            ->build()
-        ;
+        $clientBuilder = ClientBuilder::create()->setHosts($this->hosts);
+
+        if ($this->sslCert) {
+            $clientBuilder->setSSLVerification($this->sslCert);
+        }
+
+        $this->client = $clientBuilder->build();
     }
 }

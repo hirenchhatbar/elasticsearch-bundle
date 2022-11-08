@@ -4,3 +4,4 @@ parameters:
             'http://172.28.0.11:9200',
         ]
     pes.index_prefix: 'pho_'
+    pes.ssl.cert: null

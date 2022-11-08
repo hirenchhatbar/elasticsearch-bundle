@@ -3,7 +3,7 @@ services:
         resource: '../../Service/*'
 
     Phoenix\ElasticsearchBundle\Service\ClientService:
-        arguments: ['%pes.hosts%']
+        arguments: ['%pes.hosts%', '%pes.ssl.cert%']
 
     Phoenix\ElasticsearchBundle\Service\IndexService:
         arguments: ['@Phoenix\ElasticsearchBundle\Service\ClientService']
