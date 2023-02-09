@@ -11,8 +11,8 @@
 
 namespace Phoenix\ElasticsearchBundle\Service;
 
-use Elasticsearch\ClientBuilder;
-use Elasticsearch\Client;
+use Elastic\Elasticsearch\Client;
+use Elastic\Elasticsearch\ClientBuilder;
 
 /**
  * Class ClientService
