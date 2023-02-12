@@ -11,9 +11,6 @@
 
 namespace Phoenix\ElasticsearchBundle\Service;
 
-use ONGR\ElasticsearchDSL\Search;
-use ONGR\ElasticsearchDSL\Query\MatchAllQuery;
-
 /**
  * Class DocumentService
  * @package Phoenix\ElasticsearchBundle\Service
@@ -161,20 +158,18 @@ class DocumentService
     }
 
     /**
-     * Deletes by query.
+     * It deletes documents from an index based on a query.
      *
-     * @param string $index
-     * @param Search $search
+     * @param string index The name of the index to delete from
+     * @param array body The query to be used to delete the documents.
      *
-     * @return array|callable
-     *
-     * @link https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-delete-by-query.html
+     * @return The response from the deleteByQuery method.
      */
-    public function deleteByQuery(string $index, Search $search)
+    public function deleteByQuery(string $index, array $body)
     {
         $params = [
             'index' => $index,
-            'body' => $search->toArray(),
+            'body' => $body,
         ];
 
         return $this->clientService->get()->deleteByQuery($params);
@@ -189,35 +184,38 @@ class DocumentService
      */
     public function deleteAll(string $index)
     {
-        $matchAll = new MatchAllQuery();
-
-        $search = new Search();
-        $search->addQuery($matchAll);
-
-        return $this->deleteByQuery($index, $search);
+        return $this->deleteByQuery($index, [
+            'query' => [
+                'match_all' => [],
+            ]
+        ]);
     }
 
     /**
-     * Searches documents.
+     * "Search the index for the given body, optionally specifying the from and size parameters."
      *
-     * @param string $index
-     * @param Search $search
+     * @param string index The name of the index to search
+     * @param array body The query to be executed.
+     * @param int from The offset from the first result you want to fetch.
+     * @param int size The number of results to return.
      *
-     * @return array|callable
+     * @return The search results.
      */
-    public function search(string $index, Search $search)
+    public function search(string $index, array $body, int $from = null, int $size = null, bool $trackTotalHits = false)
     {
         $params = [
             'index' => $index,
-            'body' => $search->toArray(),
+            'body' => $body,
         ];
 
-        if ($search->getFrom()) {
-            $params['from'] = $search->getFrom();
+        $params['track_total_hits'] = $trackTotalHits;
+
+        if (null !== $from) {
+            $params['from'] = $from;
         }
 
-        if ($search->getSize()) {
-            $params['size'] = $search->getSize();
+        if ($size) {
+            $params['size'] = $size;
         }
 
         return $this->clientService->get()->search($params);
