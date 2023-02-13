@@ -303,14 +303,9 @@ Phoenix\ApiBundle\Elasticsearch\Document\LocationDocument:
 
 namespace Phoenix\ApiBundle\CrudManipulator;
 
-use ONGR\ElasticsearchDSL\Search;
 use Phoenix\ElasticsearchBundle\Service\DocumentService;
-use ONGR\ElasticsearchDSL\Query\MatchAllQuery;
 use Phoenix\ApiBundle\Elasticsearch\Index\LocationIndex;
 use Phoenix\ElasticsearchBundle\Utils\Pagination;
-use ONGR\ElasticsearchDSL\Sort\FieldSort;
-use ONGR\ElasticsearchDSL\Query\TermLevel\TermQuery;
-use ONGR\ElasticsearchDSL\Query\TermLevel\WildcardQuery;
 use Phoenix\ElasticsearchBundle\Utils\Util;
 
 /**
@@ -380,39 +375,49 @@ class LocationAdminCrudManipulator extends AbstractCrudManipulator
         $limit = $input['limit'] ?? 30;
         $offset = $input['offset'] ?? 0;
 
-        $search = new Search();
+        $body = [];
 
         if (isset($input['name'])) {
-            $query = new WildcardQuery('name', sprintf('*%s*', $this->util->escape($input['name'])));
-            $search->addQuery($query);
+            $body['query']['bool']['filter'][]['wildcard']['name'] = [
+                'value' => \sprintf('*%s*', $this->util->escape($input['name'])),
+            ];
+        }
+
+        if (isset($input['fullname'])) {
+            $body['query']['bool']['filter'][]['wildcard']['fullname'] = [
+                'value' => \sprintf('*%s*', \sprintf('*%s*', $this->util->escape($input['fullname']))),
+            ];
         }
 
         if (isset($input['parent'])) {
             $location = $input['parent'];
 
-            $query = new TermQuery('parent', $location->getId());
-            $search->addQuery($query);
+            $body['query']['bool']['filter'][]['term']['parent'] = [
+                'value' => $location->getId(),
+            ];
         }
 
         if (isset($input['path'])) {
-            $query = new WildcardQuery('path', sprintf('%s*', $this->util->escape($input['path'])));
-            $search->addQuery($query);
+            $body['query']['bool']['filter'][]['wildcard']['path'] = [
+                'value' => \sprintf('*%s*', \sprintf('%s*', $this->util->escape($input['path']))),
+            ];
         }
 
-        $search->setFrom($offset);
-        $search->setSize($limit);
-
-        if ($input['order_by']) {
+        if (isset($input['order_by']) && $input['order_by']) {
             $fld = key($input['order_by']);
 
             $ord = $input['order_by'][$fld];
 
-            $sort = new FieldSort($fld, $ord);
-
-            $search->addSort($sort);
+            $body['sort'][] = [$fld => $ord];
         }
 
-        $res = $this->documentService->search($this->locationIndex->name(), $search);
+        $res = $this->documentService->search(
+            $this->index->name(),
+            $body,
+            $offset,
+            $limit,
+            true
+        );
 
         $ret = \array_merge(
             $this->pagination->info($res['hits']['total']['value'], $limit, $offset),
