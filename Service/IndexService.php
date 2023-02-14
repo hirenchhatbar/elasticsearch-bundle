@@ -60,7 +60,7 @@ class IndexService
             $params['body']['mappings'] = $mappings;
         }
 
-        return $this->clientService->get()->indices()->create($params);
+        return $this->clientService->get()->indices()->create($params)->asArray();
     }
 
     /**
@@ -72,7 +72,7 @@ class IndexService
      */
     public function delete(string $index): array
     {
-        return $this->clientService->get()->indices()->delete(['index' => $index]);
+        return $this->clientService->get()->indices()->delete(['index' => $index])->asArray();
     }
 
     /**
@@ -84,7 +84,7 @@ class IndexService
      */
     public function exists(string $index): bool
     {
-        return $this->clientService->get()->indices()->exists(['index' => $index]);
+        return $this->clientService->get()->indices()->exists(['index' => $index])->asBool();
     }
 
     /**
@@ -96,7 +96,7 @@ class IndexService
      */
     public function settings(string $index): array
     {
-        return $this->clientService->get()->indices()->getSettings(['index' => $index]);
+        return $this->clientService->get()->indices()->getSettings(['index' => $index])->asArray();
     }
 
     /**
@@ -108,7 +108,7 @@ class IndexService
      */
     public function mappings(string $index): array
     {
-        return $this->clientService->get()->indices()->getMapping(['index' => $index]);
+        return $this->clientService->get()->indices()->getMapping(['index' => $index])->asArray();
     }
 
     /**
@@ -128,7 +128,7 @@ class IndexService
             ],
         ];
 
-        return $this->clientService->get()->indices()->putSettings($params);
+        return $this->clientService->get()->indices()->putSettings($params)->asArray();
     }
 
     /**
@@ -146,6 +146,6 @@ class IndexService
             'body' => $mappings,
         ];
 
-        return $this->clientService->get()->indices()->putMapping($params);
+        return $this->clientService->get()->indices()->putMapping($params)->asArray();
     }
 }

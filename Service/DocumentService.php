@@ -154,7 +154,7 @@ class DocumentService
         ];
 
         // Get doc at /my_index/_doc/my_id
-        return $this->clientService->get()->get($params);
+        return $this->clientService->get()->get($params)->asArray();
     }
 
     /**

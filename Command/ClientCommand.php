@@ -66,7 +66,7 @@ class ClientCommand extends AbstractCommand
      */
     public function ping(): void
     {
-        if (true === $this->clientService->get()->ping()) {
+        if (true === $this->clientService->get()->ping()->asBool()) {
             $this->output->writeln('<fg=green;options=bold>Successful, ping works.</>');
         } else {
             $this->output->writeln('<bg=red;fg=white;options=blink>Sorry, ping failed.</>');
@@ -78,6 +78,6 @@ class ClientCommand extends AbstractCommand
      */
     public function info(): void
     {
-        print_r($this->clientService->get()->info());
+        print_r($this->clientService->get()->info()->asArray());
     }
 }
