@@ -30,7 +30,26 @@ class ClientService
      */
     protected array $hosts;
 
+    /**
+     * SSL certificate
+     *
+     * @var string|null
+     */
     protected ?string $sslCert = null;
+
+    /**
+     * Username
+     *
+     * @var string|null
+     */
+    protected ?string $username = null;
+
+    /**
+     * Password
+     *
+     * @var string|null
+     */
+    protected ?string $password = null;
 
     /**
      * Holds object of Client.
@@ -43,11 +62,16 @@ class ClientService
      * Constructor.
      *
      * @param array $hosts
+     * @param string|null $sslCert
+     * @param string|null $username
+     * @param string|null $password
      */
-    public function __construct(array $hosts, ?string $sslCert = null)
+    public function __construct(array $hosts, ?string $sslCert = null, ?string $username = null, ?string $password = null)
     {
         $this->hosts = $hosts;
         $this->sslCert = $sslCert;
+        $this->username = $username;
+        $this->password = $password;
 
         if (!isset($this->client)) {
             $this->set();
@@ -66,13 +90,19 @@ class ClientService
 
     /**
      * Sets client.
+     *
+     * @return void
      */
     public function set(): void
     {
         $clientBuilder = ClientBuilder::create()->setHosts($this->hosts);
 
+        if ($this->username && $this->password) {
+            $clientBuilder->setBasicAuthentication($this->username, $this->password);
+        }
+
         if ($this->sslCert) {
-            $clientBuilder->setSSLVerification($this->sslCert);
+            $clientBuilder->setCABundle($this->sslCert);
         }
 
         $this->client = $clientBuilder->build();

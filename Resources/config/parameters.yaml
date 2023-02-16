@@ -5,3 +5,5 @@ parameters:
         ]
     pes.index_prefix: 'pho_'
     pes.ssl.cert: null
+    pes.username: null
+    pes.password: null
