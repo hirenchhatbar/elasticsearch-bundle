@@ -185,7 +185,7 @@ namespace Phoenix\ApiBundle\Elasticsearch\Document;
 
 use Phoenix\ElasticsearchBundle\Document\AbstractDocument;
 use Doctrine\ORM\QueryBuilder;
-use Phoenix\QueryBundle\Service\QueryService;
+use Phoenix\ApiBundle\Service\QueryService;
 use App\Entity\Location;
 use Phoenix\ApiBundle\EntityService\LocationService;
 
@@ -282,7 +282,7 @@ class LocationDocument extends AbstractDocument
 # vendor/phoenix/api-bundle/Resources/config/services_elasticsearch.yaml
 
 Phoenix\ApiBundle\Elasticsearch\Document\LocationDocument:
-    arguments: ['@Phoenix\QueryBundle\Service\QueryService', '@Phoenix\ApiBundle\EntityService\LocationService']
+    arguments: ['@Phoenix\ApiBundle\Service\QueryService', '@Phoenix\ApiBundle\EntityService\LocationService']
     tags: ['es.document']
 ```
 
