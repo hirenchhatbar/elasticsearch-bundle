@@ -1,19 +1,25 @@
 # PhoenixElasticsearchBundle
 
-- [Core library](#core-library)
-- [Manual installation](#manual-installation)
+The bundle works like a bridge to integrate Elasticsearch in Symfony. It provides developer APIs and eco-system to work with Elasticsearch easily using dependency injection (DI).
+
+- [Features](#features)
+- [Installation](#installation)
 - [Usage](#usage)
 - [Commands](#commands)
+  - [Server](#server-related-commands)
+  - [Index](#index-related-commands)
+  - [Document](#document-related-commands)
 - [Todo](#todo)
 - [Roadmap](#roadmap)
-- [Brainstroming](#brainstroming)
+- [Core library](#core-library)
 
-## Core library
+## Features
 
-- https://packagist.org/packages/elasticsearch/elasticsearch
-- https://packagist.org/packages/ongr/elasticsearch-dsl
+- Server status and information
+- Index management
+- Document management
 
-## Manual installation
+## Installation
 
 - Clone repository.
 
@@ -22,14 +28,11 @@
 git clone https://gitlab.com/phoenix-code-labs/phoenix/phoenix-elasticsearch-bundle.git
 ```
 
-- Install dependancies.
+- Install dependencies.
 
 ```sh
 # https://packagist.org/packages/elasticsearch/elasticsearch
 composer require elasticsearch/elasticsearch
-
-# https://packagist.org/packages/ongr/elasticsearch-dsl
-composer require ongr/elasticsearch-dsl
 ```
 - Autoload bundle with composer.json.
 
@@ -44,6 +47,12 @@ composer require ongr/elasticsearch-dsl
 },
 ```
 
+- Dump autoload with composer
+
+```sh
+composer dump-autoload
+```
+
 - Add new bundle in config/bundles.php.
 
 ```php
@@ -52,6 +61,7 @@ return [
     Phoenix\ElasticsearchBundle\PhoenixElasticsearchBundle::class => ['all' => true],
 ]
 ```
+
 ## Usage
 
 ### Create index class and register it as service with 'es.index' tag:
@@ -520,4 +530,6 @@ php bin/console phoenix:elasticsearch:document --index=location --id=10 get
 - Aggregation
 - Remove bundle and convert this into component
 
-## Brainstroming
+## Core library
+
+- https://packagist.org/packages/elasticsearch/elasticsearch
