@@ -24,8 +24,8 @@ The bundle works like a bridge to integrate Elasticsearch in Symfony. It provide
 - Clone repository.
 
 ```sh
-# https://gitlab.com/phoenix-code-labs/phoenix/phoenix-elasticsearch-bundle
-git clone https://gitlab.com/phoenix-code-labs/phoenix/phoenix-elasticsearch-bundle.git
+# https://github.com/hirenchhatbar/elasticsearch-bundle
+git clone git@github.com:hirenchhatbar/elasticsearch-bundle.git vendor/phoenix/elasticsearch-bundle
 ```
 
 - Install dependencies.
