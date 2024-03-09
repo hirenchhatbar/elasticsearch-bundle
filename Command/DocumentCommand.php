@@ -18,12 +18,14 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Phoenix\ElasticsearchBundle\Utils\Util;
 use Phoenix\ElasticsearchBundle\Service\DocumentService;
 use Phoenix\ElasticsearchBundle\Finder\IndexFinder;
+use Symfony\Component\Console\Attribute\AsCommand;
 
 /**
  * Class DocumentCommand
  * @package Phoenix\ElasticsearchBundle\Command
  * @author Hiren Chhatbar
  */
+#[AsCommand(name: 'phoenix:elasticsearch:document')]
 class DocumentCommand extends AbstractPageCommand
 {
     // the name of the command (the part after "bin/console")
@@ -88,7 +90,7 @@ class DocumentCommand extends AbstractPageCommand
      *
      * @see \Phoenix\ElasticsearchBundle\Command\AbstractPageCommand::execute()
      */
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         if ('sync' == $input->getArgument('action')) {
             return parent::execute($input, $output);

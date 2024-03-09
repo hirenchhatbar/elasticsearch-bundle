@@ -13,6 +13,7 @@ namespace Phoenix\ElasticsearchBundle\Command;
 
 use Phoenix\ElasticsearchBundle\Service\IndexService;
 use Phoenix\ElasticsearchBundle\Finder\IndexFinder;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputOption;
 
 /**
@@ -20,6 +21,7 @@ use Symfony\Component\Console\Input\InputOption;
  * @package Phoenix\ElasticsearchBundle\Command
  * @author Hiren Chhatbar
  */
+#[AsCommand(name: 'phoenix:elasticsearch:index')]
 class IndexCommand extends AbstractCommand
 {
     // the name of the command (the part after "bin/console")
@@ -174,3 +176,4 @@ class IndexCommand extends AbstractCommand
         }
     }
 }
+

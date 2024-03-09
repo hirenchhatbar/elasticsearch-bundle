@@ -77,7 +77,7 @@ abstract class AbstractPageCommand extends AbstractCommand
      *
      * @see \Symfony\Component\Console\Command\Command::execute()
      */
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $this->input  = $input;
         $this->output = $output;
@@ -153,8 +153,7 @@ abstract class AbstractPageCommand extends AbstractCommand
         $result = $qb->getQuery()
             ->setMaxResults($this->perPage)
             ->setFirstResult($this->offsetByPage($number))
-            ->getArrayResult()
-        ;
+            ->getArrayResult();
 
         if ($this->bulk) {
             $this->process($result);
@@ -231,3 +230,4 @@ abstract class AbstractPageCommand extends AbstractCommand
         return (($page - 1) * $this->perPage);
     }
 }
+

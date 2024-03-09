@@ -56,7 +56,7 @@ abstract class AbstractCommand extends Command
      *
      * @see \Symfony\Component\Console\Command\Command::execute()
      */
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $this->input  = $input;
         $this->output = $output;
@@ -74,3 +74,4 @@ abstract class AbstractCommand extends Command
         return Command::FAILURE;
     }
 }
+

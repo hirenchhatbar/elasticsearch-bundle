@@ -12,17 +12,16 @@
 namespace Phoenix\ElasticsearchBundle\Command;
 
 use Phoenix\ElasticsearchBundle\Service\ClientService;
+use Symfony\Component\Console\Attribute\AsCommand;
 
 /**
  * Class ClientCommand
  * @package Phoenix\ElasticsearchBundle\Command
  * @author Hiren Chhatbar
  */
+#[AsCommand(name: 'phoenix:elasticsearch:client')]
 class ClientCommand extends AbstractCommand
 {
-    // the name of the command (the part after "bin/console")
-    protected static $defaultName = 'phoenix:elasticsearch:client';
-
     /**
      * Holds object of ClientService.
      *
@@ -57,8 +56,7 @@ class ClientCommand extends AbstractCommand
 
             // the full command description shown when running the command with
             // the "--help" option
-            ->setHelp('This command performs all operation related to elasticsearch server...')
-        ;
+            ->setHelp('This command performs all operation related to elasticsearch server...');
     }
 
     /**
@@ -81,3 +79,4 @@ class ClientCommand extends AbstractCommand
         print_r($this->clientService->get()->info()->asArray());
     }
 }
+
